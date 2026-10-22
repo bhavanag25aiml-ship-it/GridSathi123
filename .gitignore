@@ -1,0 +1,25 @@
+# GridSathi — Git Ignore File
+# Exclude virtual environment (very large, not needed on cloud)
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Large data files (optional - remove if you need them on cloud)
+# data/*.csv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cloudflare tunnel portable
+cloudflared.exe
+PUBLIC_LINK.txt
+
+# Generated reports & office docs (optional)
+*.pdf
+test_clone.pptx

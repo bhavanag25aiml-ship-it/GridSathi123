@@ -1,0 +1,3793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GridSathi ⚡ AI Energy Platform — 17 Smart Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #05081a;
+  --bg-secondary: #0a0f2a;
+  --bg-card: rgba(10, 15, 40, 0.85);
+  --bg-input: rgba(6, 10, 28, 0.9);
+  --text-main: #f0f6ff;
+  --text-muted: #8899bb;
+  --accent-blue: #38bdf8;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+  --accent-emerald: #059669;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-purple: #a855f7;
+  --accent-violet: #818cf8;
+  --border-color: rgba(56, 189, 248, 0.15);
+  --card-shadow: 0 20px 50px -12px rgba(0,0,0,0.8), 0 0 0 1px rgba(56,189,248,0.06) inset;
+  --radius: 16px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+[data-theme="light"] {
+  --bg-primary: #eef2f9;
+  --bg-secondary: #f8faff;
+  --bg-card: rgba(255, 255, 255, 0.97);
+  --bg-input: #f0f4ff;
+  --text-main: #0d1226;
+  --text-muted: #5a6a8a;
+  --accent-blue: #0284c7;
+  --accent-cyan: #0891b2;
+  --accent-green: #059669;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+  --border-color: rgba(2, 132, 199, 0.15);
+  --card-shadow: 0 4px 24px -4px rgba(13,18,38,0.10);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ── ANIMATED BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 10%, rgba(56,189,248,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 90%, rgba(168,85,247,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(16,185,129,0.06) 0%, transparent 50%),
+    radial-gradient(rgba(56,189,248,0.055) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * { position: relative; z-index: 1; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(5, 8, 26, 0.6); }
+::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(56,189,248,0.6); }
+
+/* ── HEADER ── */
+header {
+  background: rgba(5, 8, 26, 0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(56,189,248,0.18);
+  box-shadow: 0 1px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  padding: 0 28px;
+}
+.header-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(56,189,248,0.3) 0%, rgba(168,85,247,0.3) 100%);
+  border: 1.5px solid rgba(56,189,248,0.5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(56,189,248,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.logo-text h1 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  background: linear-gradient(130deg, #ffffff 0%, #93c5fd 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.logo-tagline {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(16,185,129,0.12);
+  border: 1px solid rgba(16,185,129,0.35);
+  color: #34d399;
+  padding: 5px 13px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(16,185,129,0.18);
+  white-space: nowrap;
+}
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52,211,153,0.7); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 8px rgba(52,211,153,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+}
+.theme-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #cbd5e1;
+  padding: 7px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font);
+  transition: all 0.2s;
+}
+.theme-btn:hover { background: rgba(255,255,255,0.14); color: #fff; border-color: rgba(56,189,248,0.4); }
+
+/* ── HERO STAT STRIP ── */
+.hero-strip {
+  background: linear-gradient(90deg,
+    rgba(56,189,248,0.08) 0%,
+    rgba(168,85,247,0.07) 50%,
+    rgba(16,185,129,0.08) 100%);
+  border-bottom: 1px solid rgba(56,189,248,0.1);
+  padding: 12px 28px;
+}
+.hero-strip-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.hero-strip-inner::-webkit-scrollbar { display: none; }
+.hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+  border-right: 1px solid rgba(56,189,248,0.12);
+  flex-shrink: 0;
+}
+.hero-stat:first-child { padding-left: 0; }
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat-lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; line-height: 1.3; }
+
+/* ── PRESET BAR ── */
+.preset-bar {
+  background: rgba(8, 12, 34, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(56,189,248,0.1);
+  padding: 9px 28px;
+}
+.preset-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.preset-container::-webkit-scrollbar { display: none; }
+.preset-title {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.preset-pill {
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.18);
+  color: #94a3b8;
+  padding: 5px 13px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+  white-space: nowrap;
+  font-family: var(--font);
+}
+.preset-pill:hover {
+  background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(168,85,247,0.2));
+  border-color: rgba(56,189,248,0.55);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(56,189,248,0.28);
+}
+
+/* ── TAB NAV ── */
+.tabs-wrapper {
+  background: rgba(5, 8, 26, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(56,189,248,0.12);
+  padding: 0 28px;
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+}
+.tabs-nav {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 14px 15px;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.1px;
+}
+.tab-btn:hover { color: #e2e8f0; background: rgba(56,189,248,0.05); }
+.tab-btn.active {
+  color: #ffffff;
+  border-bottom-color: #38bdf8;
+  background: rgba(56,189,248,0.07);
+}
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8);
+  box-shadow: 0 0 12px rgba(56,189,248,0.9);
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 1360px;
+  margin: 28px auto 80px;
+  padding: 0 28px;
+}
+.tab-pane { display: none; }
+.tab-pane.active { display: block; animation: tabIn 0.35s cubic-bezier(0.16,1,0.3,1); }
+@keyframes tabIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(56,189,248,0.12);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  margin-bottom: 22px;
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s, border-color 0.28s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.5) 50%, transparent 100%);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(56,189,248,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56,189,248,0.3);
+  box-shadow: 0 28px 60px -15px rgba(0,0,0,0.85), 0 0 30px rgba(56,189,248,0.12);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f0f6ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+.card-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  line-height: 1.55;
+}
+
+
+/* ── PRESET PILL ACTIVE ── */
+.preset-pill.active {
+  background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(168,85,247,0.25));
+  border-color: rgba(56,189,248,0.7);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(56,189,248,0.4);
+}
+
+.section-head {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--accent-blue);
+  margin: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(56,189,248,0.35) 0%, rgba(56,189,248,0.02) 100%);
+}
+
+/* ── OLD SECTION HEAD REPLACED ── */
+.old-section-head {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-blue);
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(56,189,248,0.15);
+}
+
+/* ── FORMS ── */
+.form-group { margin-bottom: 16px; }
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1px solid rgba(56,189,248,0.18);
+  border-radius: 10px;
+  color: #f0f6ff;
+  font-size: 13.5px;
+  font-family: var(--font);
+  outline: none;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.2), 0 0 20px rgba(56,189,248,0.1);
+  background: rgba(8,14,38,0.95);
+}
+select { cursor: pointer; }
+select option { background: #0a0f2a; color: #f0f6ff; }
+
+/* ── RANGE SLIDER ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #38bdf8 0%, rgba(56,189,248,0.3) 100%);
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+  margin: 6px 0;
+  padding: 0;
+  border: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.25), 0 0 16px rgba(56,189,248,0.6);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 5px rgba(56,189,248,0.25), 0 0 24px rgba(56,189,248,0.9);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 0 10px #38bdf8;
+}
+.range-slider-val {
+  font-weight: 700;
+  color: var(--accent-blue);
+  font-size: 14px;
+  margin-left: 8px;
+  font-family: var(--mono);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 22px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #fff;
+  border: 1px solid rgba(56,189,248,0.35);
+  border-radius: 11px;
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: var(--font);
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 4px 18px rgba(2,132,199,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.4s ease;
+}
+.btn:hover::before { left: 100%; }
+.btn:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(2,132,199,0.55), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn:active { transform: translateY(0); }
+.btn-secondary {
+  background: rgba(56,189,248,0.08);
+  color: #38bdf8;
+  border: 1px solid rgba(56,189,248,0.25);
+  box-shadow: none;
+}
+.btn-secondary:hover {
+  background: rgba(56,189,248,0.18);
+  color: #fff;
+  border-color: rgba(56,189,248,0.6);
+  box-shadow: 0 4px 16px rgba(56,189,248,0.25);
+}
+.btn-emerald {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  border-color: rgba(16,185,129,0.35);
+  box-shadow: 0 4px 18px rgba(16,185,129,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-emerald:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  box-shadow: 0 8px 28px rgba(16,185,129,0.55);
+}
+.btn-purple {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  border-color: rgba(168,85,247,0.35);
+  box-shadow: 0 4px 18px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-purple:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+  box-shadow: 0 8px 28px rgba(168,85,247,0.55);
+}
+
+/* ── STAT CARDS ── */
+.stat-card {
+  background: linear-gradient(145deg, rgba(10,15,42,0.9), rgba(15,23,50,0.8));
+  border: 1px solid rgba(56,189,248,0.15);
+  border-radius: 14px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56,189,248,0.38);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(56,189,248,0.12);
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  border-radius: 14px 14px 0 0;
+}
+.stat-card.green::before  { background: linear-gradient(90deg, #10b981, #059669); }
+.stat-card.amber::before  { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.stat-card.rose::before   { background: linear-gradient(90deg, #f43f5e, #be123c); }
+.stat-card.purple::before { background: linear-gradient(90deg, #a855f7, #7c3aed); }
+.stat-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+.stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #f0f6ff;
+  margin-top: 6px;
+  font-family: var(--mono);
+  line-height: 1.1;
+}
+.stat-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 4px;
+  font-weight: 500;
+}
+.stat-icon {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 22px;
+  opacity: 0.2;
+}
+
+/* ── RESULT BOX ── */
+.result-box {
+  background: rgba(6,10,28,0.9);
+  border: 1px solid rgba(56,189,248,0.18);
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 18px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  position: relative;
+}
+.result-box:empty { display: none; }
+.result-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 16px; right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56,189,248,0.4), transparent);
+}
+
+/* ── GRAPH WRAPPER ── */
+.graph-wrapper {
+  overflow-x: auto;
+  margin-top: 18px;
+  background: rgba(5,8,26,0.95);
+  border: 1px solid rgba(56,189,248,0.14);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: inset 0 3px 12px rgba(0,0,0,0.5);
+  position: relative;
+}
+.graph-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56,189,248,0.35), transparent);
+}
+.graph-wrapper svg {
+  display: block;
+  width: 100%;
+  min-width: 650px;
+  height: 280px;
+}
+
+/* ── FLOW CANVAS ── */
+#flowCanvas {
+  display: block;
+  width: 100%;
+  height: 250px;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(30,58,138,0.4) 0%, rgba(5,8,26,0.96) 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(56,189,248,0.15);
+}
+
+/* ── XAI FEATURE BARS ── */
+.xai-item { margin-top: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(56,189,248,0.08); }
+.xai-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.xai-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+.xai-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px rgba(56,189,248,0.5);
+}
+.xai-desc { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+/* ── GRADE BADGE ── */
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: 900;
+  background: radial-gradient(circle at 30% 30%, #10b981 0%, #047857 100%);
+  color: white;
+  box-shadow: 0 0 30px rgba(16,185,129,0.6), 0 0 60px rgba(16,185,129,0.2);
+  position: relative;
+}
+.grade-badge::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(#10b981, #059669, #34d399, #10b981);
+  z-index: -1;
+  animation: spinRing 4s linear infinite;
+  opacity: 0.6;
+}
+@keyframes spinRing { to { transform: rotate(360deg); } }
+
+/* ── ANOMALY BADGES ── */
+.badge-alert { display: inline-block; padding: 4px 10px; border-radius: 8px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-critical { background: rgba(244,63,94,0.18); color: #f43f5e; border: 1px solid rgba(244,63,94,0.4); }
+.badge-high     { background: rgba(245,158,11,0.18); color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); }
+.badge-safe     { background: rgba(16,185,129,0.18); color: #10b981; border: 1px solid rgba(16,185,129,0.4); }
+
+/* ── GANTT ── */
+.gantt-row { display: flex; align-items: center; margin: 9px 0; font-size: 12.5px; gap: 10px; }
+.gantt-label { width: 150px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; color: #94a3b8; }
+.gantt-timeline { flex: 1; height: 28px; background: rgba(255,255,255,0.04); border-radius: 8px; position: relative; overflow: hidden; border: 1px solid rgba(56,189,248,0.08); }
+.gantt-bar {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #818cf8);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(56,189,248,0.4);
+}
+
+/* ── COPILOT CHAT ── */
+.copilot-messages {
+  height: 300px;
+  overflow-y: auto;
+  background: rgba(6,10,28,0.9);
+  border: 1px solid rgba(56,189,248,0.15);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-msg {
+  max-width: 82%;
+  padding: 11px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  animation: chatIn 0.25s ease;
+}
+@keyframes chatIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.chat-agent {
+  align-self: flex-start;
+  background: rgba(56,189,248,0.1);
+  border: 1px solid rgba(56,189,248,0.2);
+  color: var(--text-main);
+  border-radius: 4px 14px 14px 14px;
+}
+.chat-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: white;
+  border-radius: 14px 14px 4px 14px;
+  box-shadow: 0 4px 14px rgba(2,132,199,0.35);
+}
+.chat-input-row { display: flex; gap: 8px; }
+
+/* ── RELAY CARDS ── */
+.plc-relay-card {
+  background: rgba(8,12,34,0.9);
+  border: 1px solid rgba(56,189,248,0.14);
+  border-radius: 11px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  transition: all 0.2s;
+}
+.plc-relay-card:hover { border-color: rgba(56,189,248,0.4); background: rgba(15,23,50,0.95); }
+.relay-led {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+.led-on    { background: #10b981; box-shadow: 0 0 10px #10b981, 0 0 20px rgba(16,185,129,0.5); }
+.led-off   { background: #ef4444; box-shadow: 0 0 10px #ef4444, 0 0 20px rgba(239,68,68,0.4); }
+.led-amber { background: #f59e0b; box-shadow: 0 0 10px #f59e0b, 0 0 20px rgba(245,158,11,0.5); }
+
+/* ── FORMULA BOX ── */
+.formula-box {
+  background: rgba(5,8,26,0.96);
+  border-left: 3px solid #38bdf8;
+  border: 1px solid rgba(56,189,248,0.2);
+  border-left-width: 3px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: #7dd3fc;
+  margin: 14px 0 18px;
+  line-height: 1.7;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), 0 0 0 1px rgba(56,189,248,0.05);
+  position: relative;
+}
+.formula-box::before {
+  content: '≡ FORMULA';
+  position: absolute;
+  top: -10px; left: 14px;
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font);
+}
+
+/* ── PAPER PILLS ── */
+.paper-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: rgba(56,189,248,0.1);
+  border: 1px solid rgba(56,189,248,0.3);
+  color: #38bdf8;
+}
+.paper-pill.nature { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.35); color: #34d399; }
+.paper-pill.mdpi   { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.35); color: #fbbf24; }
+.paper-pill.ieee   { background: rgba(129,140,248,0.12); border-color: rgba(129,140,248,0.35); color: #a5b4fc; }
+
+/* ── TABLES ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.data-table th {
+  background: rgba(56,189,248,0.08);
+  color: #38bdf8;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(56,189,248,0.2);
+}
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(56,189,248,0.06);
+  color: #94a3b8;
+}
+.data-table tr:hover td { background: rgba(56,189,248,0.04); }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ── RANGE SLIDER VAL ── */
+.range-slider-val { font-weight: 700; color: var(--accent-blue); font-size: 13px; margin-left: 8px; font-family: var(--mono); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 36px 20px;
+  border-top: 1px solid rgba(56,189,248,0.1);
+  background: rgba(5,8,26,0.6);
+  backdrop-filter: blur(16px);
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56,189,248,0.5), rgba(168,85,247,0.4), transparent);
+}
+.footer-text {
+  font-size: 12.5px;
+  color: #334155;
+  font-weight: 500;
+}
+.footer-text span {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="bgGridCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <div class="logo-group">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">
+        <h1>⚡ GridSathi</h1>
+        <p>Energy Forecasting & Smart Demand Scheduling</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="badge-status">
+        <span class="pulse-dot"></span>
+        <span id="backendStatus">AI Engine Online (FastAPI + XGBoost 3.2)</span>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Stats Strip -->
+<div class="hero-strip">
+  <div class="hero-strip-inner">
+    <div class="hero-stat"><div class="hero-stat-num">17</div><div class="hero-stat-lbl">AI Features<br>&amp; Dashboard Tabs</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-lbl">2025 Research<br>Papers (IEEE/Nature/MDPI)</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">19+</div><div class="hero-stat-lbl">Live REST<br>API Endpoints</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">Functional<br>Interactive Features</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">XGBoost</div><div class="hero-stat-lbl">AI Model<br>R²=0.97</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">69.8%</div><div class="hero-stat-lbl">PAR Reduction<br>(Nature 2025)</div></div>
+  </div>
+</div>
+
+<!-- Quick Scenario Presets Bar -->
+<div class="preset-bar">
+  <div class="preset-container">
+    <span class="preset-title">⚡ Quick Demos:</span>
+    <button class="preset-pill" onclick="loadPreset('summer_heat')">📈 24h Energy Forecast</button>
+    <button class="preset-pill" onclick="loadPreset('scada_doe')">🏭 SCADA 2×2 Factorial PLC (IEEE 2025)</button>
+    <button class="preset-pill" onclick="loadPreset('puma_rl')">🐾 MO-DQN Puma Optimizer (Nature 2025)</button>
+    <button class="preset-pill" onclick="loadPreset('ev_governance')">⚡ EV Grid Stability Matrix (IEEE 2025)</button>
+    <button class="preset-pill" onclick="loadPreset('sizing_calc')">📐 Smart Home PV+BESS Sizing (MDPI 2025)</button>
+    <button class="preset-pill" onclick="loadPreset('hho_lab')">🦅 Harris Hawks (HHO) AI Tuning</button>
+    <button class="preset-pill" onclick="loadPreset('mid_month_budget')">💰 15-Day Mid-Month Budget Cap</button>
+    <button class="preset-pill" onclick="loadPreset('v2h_v2g')">🚗 Bidirectional V2H & V2G Dispatch</button>
+    <button class="preset-pill" onclick="loadPreset('solar_storage')">🔋 Rooftop Solar + BESS Arbitrage</button>
+  </div>
+</div>
+
+<!-- Tab Navigation Bar - Categorized by Project Scope -->
+<div class="tabs-wrapper"><nav class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('forecast')">📈 1. AI Energy Forecast</button>
+  <button class="tab-btn" onclick="switchTab('scada')">🏭 2. SCADA 2×2 Factorial Studio (IEEE)</button>
+  <button class="tab-btn" onclick="switchTab('modqn')">🐾 3. Nature MO-DQN & Puma Optimizer</button>
+  <button class="tab-btn" onclick="switchTab('evgov')">⚡ 4. EV Governance & Stability Matrix</button>
+  <button class="tab-btn" onclick="switchTab('sizing')">📐 5. PV & Storage Autonomy Sizing</button>
+  <button class="tab-btn" onclick="switchTab('multihorizon')">📅 6. Multi-Horizon (STLF/MTLF)</button>
+  <button class="tab-btn" onclick="switchTab('hho')">🦅 7. HHO Bio-Inspired Tuning</button>
+  <button class="tab-btn" onclick="switchTab('fleet')">⏰ 8. Smart Demand Fleet Scheduler</button>
+  <button class="tab-btn" onclick="switchTab('budget')">💰 9. Mid-Month Budget Sentinel</button>
+  <button class="tab-btn" onclick="switchTab('timemachine')">🕒 10. Grid Time Machine</button>
+  <button class="tab-btn" onclick="switchTab('v2h')">🚗 11. V2H & V2G Adaptive Dispatch</button>
+  <button class="tab-btn" onclick="switchTab('solar')">☀️ 12. Solar + BESS Microgrid</button>
+  <button class="tab-btn" onclick="switchTab('carbon')">🌿 13. 50Hz Frequency & Carbon</button>
+  <button class="tab-btn" onclick="switchTab('anomaly')">🛡️ 14. AI Anomaly Sentinel</button>
+  <button class="tab-btn" onclick="switchTab('vpp')">🌪️ 15. VPP Blackout Resilience</button>
+  <button class="tab-btn" onclick="switchTab('audit')">📋 16. Energy Health Audit</button>
+  <button class="tab-btn" onclick="switchTab('copilot')">💬 17. Sathi AI Copilot</button>
+</nav></div>
+
+<main>
+
+<!-- ======================================================== -->
+<!-- TAB 1: AI FORECASTING & PEAK DETECTION -->
+<!-- ======================================================== -->
+<div id="tab-forecast" class="tab-pane active">
+  <div class="grid-2">
+    <!-- Single Prediction Card -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2>🤖 AI Energy Forecasting</h2>
+          <p class="card-desc">XGBoost regression with 95% statistical confidence bounds</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Hour of Day (0–23)</label>
+          <input id="fcHour" type="number" min="0" max="23" value="18">
+        </div>
+        <div class="form-group">
+          <label>Day of Week (0=Mon, 6=Sun)</label>
+          <input id="fcDay" type="number" min="0" max="6" value="2">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Month (1–12)</label>
+          <input id="fcMonth" type="number" min="1" max="12" value="1">
+        </div>
+        <div class="form-group">
+          <label>Ambient Temperature (°C)</label>
+          <input id="fcTemp" type="number" step="0.5" value="25.0">
+        </div>
+      </div>
+
+      <button class="btn" onclick="predictSingleHour()">⚡ Predict Instantaneous Demand</button>
+
+      <div id="predStats" class="grid-3" style="margin-top: 18px; display: none;">
+        <div class="stat-card">
+          <div class="stat-label">Predicted Load</div>
+          <div class="stat-value" id="predVal">--</div>
+          <div class="stat-sub">kWh / hour</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">95% Confidence Band</div>
+          <div class="stat-value" id="predCI" style="font-size:18px;">--</div>
+          <div class="stat-sub">Residual Uncertainty</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">ToD Tariff Rate</div>
+          <div class="stat-value" id="predTariff" style="color:var(--accent-amber);">--</div>
+          <div class="stat-sub" id="predCost">--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explainable AI (XAI) Card -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2>🧠 Explainable AI (XAI)</h2>
+          <p class="card-desc">Global feature reliance and thermodynamic split weights</p>
+        </div>
+        <button class="btn btn-secondary" style="width: auto; padding: 6px 14px;" onclick="fetchXAI()">Inspect Model</button>
+      </div>
+
+      <div id="xaiList">
+        <p style="font-size: 13px; color: var(--text-muted);">Click "Inspect Model" to load real-time tree feature importances.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 24-Hour Chronological Forecast Card -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>📈 24-Hour Grid Demand Curve & Peak Detection</h2>
+        <p class="card-desc">Simulated full-day dispatch highlighting critical peak and low-demand off-peak windows</p>
+      </div>
+      <button class="btn btn-secondary" style="width: auto; padding: 8px 16px;" onclick="load24HourForecast()">Generate 24h Dispatch Curve</button>
+    </div>
+
+    <div id="forecastSummaryCards" class="grid-4" style="margin-bottom: 16px; display: none;">
+      <div class="stat-card amber">
+        <div class="stat-label">Daily Consumption</div>
+        <div class="stat-value" id="dayTotalKwh">--</div>
+        <div class="stat-sub">Total kWh / day</div>
+      </div>
+      <div class="stat-card rose">
+        <div class="stat-label">Peak Demand</div>
+        <div class="stat-value" id="dayPeakKwh" style="color:var(--accent-rose);">--</div>
+        <div class="stat-sub" id="dayPeakHour">--</div>
+      </div>
+      <div class="stat-card rose">
+        <div class="stat-label">PAR (Peak-to-Average)</div>
+        <div class="stat-value" id="dayPAR">--</div>
+        <div class="stat-sub">Grid Stress Factor</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Low Off-Peak Window</div>
+        <div class="stat-value" id="dayLowHour" style="color:var(--accent-green);">--</div>
+        <div class="stat-sub">Cheapest charging slot</div>
+      </div>
+    </div>
+
+    <div class="graph-wrapper">
+      <svg id="svgForecast24" viewBox="0 0 900 280"></svg>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB: V2H & V2G HIERARCHICAL ADAPTIVE DISPATCHER -->
+<!-- Derived from Mnassri et al. (Energies 2025) & Johnsi Rani et al. (ICDISS 2025) -->
+<!-- ======================================================== -->
+<div id="tab-v2h" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🚗 Bidirectional V2H & V2G Adaptive Dispatcher</h2>
+        <p class="card-desc">Hierarchical dual-battery dispatch: Home Battery handles diurnal cycles while EV (V2H/V2G) handles deficits with mobility reserve protection</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('v2h_v2g')">Load Demo Profile</button>
+    </div>
+
+    <div class="grid-4">
+      <div class="form-group">
+        <label>Home Battery Capacity (kWh)</label>
+        <input id="v2hHomeBattCap" type="number" step="1" value="10.0">
+      </div>
+      <div class="form-group">
+        <label>Home Battery Initial SOC (%)</label>
+        <input id="v2hHomeBattSoc" type="number" min="15" max="95" value="60">
+      </div>
+      <div class="form-group">
+        <label>EV Battery Capacity (kWh)</label>
+        <input id="v2hEvCap" type="number" step="5" value="50.0">
+      </div>
+      <div class="form-group">
+        <label>EV Battery Current SOC (%)</label>
+        <input id="v2hEvSoc" type="number" min="20" max="100" value="75">
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="form-group">
+        <label>EV Mobility Reserve SOC (%) [Non-Negotiable]</label>
+        <input id="v2hReserveSoc" type="number" min="20" max="90" value="40">
+        <p class="card-desc">EV will NEVER discharge below this for driving safety.</p>
+      </div>
+      <div class="form-group">
+        <label>Rooftop Solar PV (kWp)</label>
+        <input id="v2hSolarKw" type="number" step="0.5" value="5.0">
+      </div>
+      <div class="form-group">
+        <label>Relative Humidity (%) [Eq. 30/31]</label>
+        <input id="v2hHumidity" type="number" min="10" max="100" value="55">
+      </div>
+      <div class="form-group">
+        <label>V2G Peak Grid Feed-In Incentive (₹/kWh)</label>
+        <input id="v2gIncentiveRate" type="number" step="0.5" value="11.5">
+      </div>
+    </div>
+
+    <div style="display:flex; gap:20px; margin: 10px 0 16px; flex-wrap:wrap;">
+      <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
+        <input type="checkbox" id="v2hAllowed" checked style="width:auto;"> Enable V2H Household Load Balancing
+      </label>
+      <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
+        <input type="checkbox" id="v2gAllowed" checked style="width:auto;"> Enable V2G Peak Grid Support (18:00 - 22:00)
+      </label>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runV2HDispatcher()">⚡ Execute Hierarchical V2H/V2G Adaptive Dispatch</button>
+
+    <div id="v2hResultsArea" style="margin-top: 22px; display: none;">
+      <!-- Research Paper Metrics -->
+      <h3 class="section-head" style="font-size: 15px; margin-bottom: 10px; color: var(--accent-blue);">Research Paper Validated Outcomes (Mnassri et al. 2025):</h3>
+      <div class="grid-4">
+        <div class="stat-card green">
+          <div class="stat-label">PV Self-Consumption</div>
+          <div class="stat-value" id="v2hSelfCons" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">+18.6% vs unmanaged</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">Grid Reliance Drop</div>
+          <div class="stat-value" id="v2hGridDrop" style="color:var(--accent-cyan);">-25.0%</div>
+          <div class="stat-sub">Validated reduction</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Household Cost Saved</div>
+          <div class="stat-value" id="v2hCostSave" style="color:var(--accent-amber);">-17.3%</div>
+          <div class="stat-sub">Monthly savings</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">EV Owner Incentive</div>
+          <div class="stat-value" id="v2gIncentiveEarned" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">V2G peak feed reward</div>
+        </div>
+      </div>
+
+      <!-- IEEE Grid Stability Telemetry Card -->
+      <h3 class="section-head" style="font-size: 15px; margin: 18px 0 10px; color: var(--accent-blue);">Grid Power Quality & Stability Improvements (Johnsi Rani et al. 2025 IEEE):</h3>
+      <div class="grid-4">
+        <div class="stat-card rose">
+          <div class="stat-label">Voltage Deviation</div>
+          <div class="stat-value" style="font-size:20px;">2.8% (vs 7.5%)</div>
+          <div class="stat-sub" style="color:var(--accent-green);">62.7% Improvement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Frequency Fluctuation</div>
+          <div class="stat-value" style="font-size:20px;">0.04 Hz (vs 0.12)</div>
+          <div class="stat-sub" style="color:var(--accent-green);">66.6% Improvement</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Grid Power Loss</div>
+          <div class="stat-value" style="font-size:20px;">75 kW (vs 130)</div>
+          <div class="stat-sub" style="color:var(--accent-green);">42.3% Reduction</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Peak Demand Shaved</div>
+          <div class="stat-value" style="font-size:20px;">30.0%</div>
+          <div class="stat-sub" style="color:var(--accent-green);">1450 kW ➔ 1015 kW</div>
+        </div>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">24-Hour Hierarchical Dispatch Dynamics (PV vs Home vs EV vs V2G):</h3>
+      <div class="graph-wrapper">
+        <svg id="svgV2hGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB: 15-DAY MID-MONTH BUDGET SENTINEL & GREEDY STEP-DOWN TRIMMER -->
+<!-- Derived from Rao et al. (ICETI4T 2025 IEEE) -->
+<!-- ======================================================== -->
+<div id="tab-budget" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>💰 Mid-Month 15-Day Budget Sentinel & Greedy Appliance Trimmer <span class="paper-pill ieee">IEEE ICETI4T 2025</span></h2>
+        <p class="card-desc">Analyzes Days 1–15 actuals, projects Days 16–30, and applies Greedy Step-Down optimization to guarantee the monthly bill never breaches budget</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('mid_month_budget')">Load Rao et al. Case Study</button>
+    </div>
+
+    <div class="grid-4">
+      <div class="form-group">
+        <label>Monthly Budget Limit (₹)</label>
+        <input id="mbBudgetLimit" type="number" step="50" value="1600.0">
+      </div>
+      <div class="form-group">
+        <label>Electricity Unit Rate (₹/kWh)</label>
+        <input id="mbUnitRate" type="number" step="0.1" value="5.9">
+      </div>
+      <div class="form-group">
+        <label>Fixed Meter Charges (₹) [3 × ₹120]</label>
+        <input id="mbFixedCharge" type="number" value="360.0">
+      </div>
+      <div class="form-group">
+        <label>Days 1–15 Actual Energy (kWh)</label>
+        <input id="mbDays1to15Kwh" type="number" step="1" value="105.42">
+      </div>
+    </div>
+
+    <h3 class="section-head" style="font-size: 15px; margin: 14px 0 10px; color: var(--accent-blue);">Household Appliances Baseline Usage (Days 16–30):</h3>
+    <div class="grid-4">
+      <div class="form-group">
+        <label>Air Conditioner (1500W)</label>
+        <input id="mbAcHours" type="number" step="0.5" value="2.5">
+        <span style="font-size:11px; color:var(--text-muted);">Hours / day</span>
+      </div>
+      <div class="form-group">
+        <label>Washing Machine (1000W)</label>
+        <input id="mbWashHours" type="number" step="0.5" value="1.0">
+        <span style="font-size:11px; color:var(--text-muted);">Hours / day</span>
+      </div>
+      <div class="form-group">
+        <label>Kitchen Appliances (800W)</label>
+        <input id="mbKitchenHours" type="number" step="0.5" value="2.0">
+        <span style="font-size:11px; color:var(--text-muted);">Hours / day</span>
+      </div>
+      <div class="form-group">
+        <label>Refrigerator (150W - Protected)</label>
+        <input id="mbFridgeHours" type="number" step="0.5" value="10.0">
+        <span style="font-size:11px; color:var(--text-muted);">Hours / day (Constant baseline)</span>
+      </div>
+    </div>
+
+    <button class="btn" onclick="runMidMonthBudgetOptimizer()">⚡ Run 15-Day Greedy Budget Optimization</button>
+
+    <div id="budgetResultsArea" style="margin-top: 22px; display: none;">
+      <div class="grid-4">
+        <div class="stat-card amber">
+          <div class="stat-label">Days 1–15 Actual Bill</div>
+          <div class="stat-value" id="mbBill1to15">--</div>
+          <div class="stat-sub" id="mbKwh1to15">--</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Unoptimized Total Month</div>
+          <div class="stat-value" id="mbUnoptTotal" style="color:var(--accent-rose);">--</div>
+          <div class="stat-sub" id="mbBudgetDelta">Budget Breached!</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Optimized Total Month</div>
+          <div class="stat-value" id="mbOptTotal" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">Target ₹1600 Guaranteed!</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Total Money Saved</div>
+          <div class="stat-value" id="mbSavings" style="color:var(--accent-amber);">--</div>
+          <div class="stat-sub">Via greedy trimming</div>
+        </div>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">Greedy Appliance Trimming Plan for Days 16–30 (Exact Minutes per Day):</h3>
+      <div id="greedyApplianceCards" class="grid-3"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB: HARRIS HAWKS OPTIMIZATION (HHO) BIO-INSPIRED LAB -->
+<!-- Derived from Mnassri et al. (Energies 2025, Equations 10-23) -->
+<!-- ======================================================== -->
+<div id="tab-hho" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🦅 Harris Hawks Optimization (HHO) Bio-Inspired AI Lab <span class="paper-pill nature">Bio-Inspired AI</span></h2>
+        <p class="card-desc">Simulate cooperative hunting search dynamics ($E = 2E_0(1 - t/T)$) tuning Attention-LSTM hyperparameters and outperforming Particle Swarm Optimization</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('hho_lab')">Simulate HHO Tuning</button>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Population of Hawks (N)</label>
+        <input id="hhoHawks" type="number" min="10" max="100" value="30">
+      </div>
+      <div class="form-group">
+        <label>Maximum Iterations (T)</label>
+        <input id="hhoIterations" type="number" min="10" max="150" value="40">
+      </div>
+      <div class="form-group">
+        <label>Objective Function</label>
+        <select disabled>
+          <option selected>Minimize Forecasting RMSE (Wh)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runHHOLab()">🦅 Run Cooperative Hunt Simulation</button>
+
+    <div id="hhoResultsArea" style="margin-top: 22px; display: none;">
+      <h3 class="section-head" style="font-size: 15px; margin-bottom: 10px; color: var(--accent-blue);">Optimal Architecture Discovered by HHO:</h3>
+      <div class="grid-4" id="hhoBestParams">
+        <div class="stat-card purple"><div class="stat-label">Hidden Units</div><div class="stat-value" style="font-size:20px;">128 Units</div></div>
+        <div class="stat-card purple"><div class="stat-label">Learning Rate</div><div class="stat-value" style="font-size:20px;">0.00042</div></div>
+        <div class="stat-card purple"><div class="stat-label">Batch Size / Dropout</div><div class="stat-value" style="font-size:20px;">32 / 0.15</div></div>
+        <div class="stat-card purple"><div class="stat-label">Epochs / Window</div><div class="stat-value" style="font-size:20px;">150 / 24 steps</div></div>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">State-of-the-Art Benchmark Comparison (Mnassri et al. Table 6):</h3>
+      <div style="overflow-x:auto;">
+        <table class="data-table" style=" font-size:13px; text-align:left; background:var(--bg-input); border-radius:8px; overflow:hidden;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+              <th style="padding:10px 14px;">Architecture</th>
+              <th style="padding:10px 14px;">Optimization Method</th>
+              <th style="padding:10px 14px;">RMSE (Wh)</th>
+              <th style="padding:10px 14px;">MAE (Wh)</th>
+              <th style="padding:10px 14px;">MAPE (%)</th>
+              <th style="padding:10px 14px;">R² Score</th>
+            </tr>
+          </thead>
+          <tbody id="hhoBenchmarkTable"></tbody>
+        </table>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">Convergence Curves: HHO (Cooperative Besiege) vs PSO (Particle Swarm):</h3>
+      <div class="graph-wrapper">
+        <svg id="svgHhoGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB: MULTI-HORIZON FORECASTING & 1% ERROR FINANCIAL RISK -->
+<!-- Derived from Mishra et al. (IEEE IETACS 2025) -->
+<!-- ======================================================== -->
+<div id="tab-multihorizon" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>📅 Multi-Horizon Forecasting & 1% Error Financial Risk Meter</h2>
+        <p class="card-desc">Evaluates Short-Term (STLF 24h), Medium-Term (MTLF 4 weeks), and Long-Term (LTLF 12 months) loads, calculating the millions in utility losses caused by forecasting errors</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('multi_horizon')">Run Utility Assessment</button>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Forecasting Horizon</label>
+        <select id="mhHorizonType">
+          <option value="STLF" selected>Short-Term Load Forecast (STLF - 24 Hours Dispatch)</option>
+          <option value="MTLF">Medium-Term Load Forecast (MTLF - 4 Weeks Maintenance)</option>
+          <option value="LTLF">Long-Term Load Forecast (LTLF - 12 Months Capital Plan)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Utility Substation Capacity (MW)</label>
+        <input id="mhUtilityMw" type="number" step="50" value="500.0">
+      </div>
+      <div class="form-group">
+        <label>Forecast Deviation Error Rate (%)</label>
+        <input id="mhErrorPct" type="number" step="0.5" min="0.5" max="20" value="3.5">
+      </div>
+    </div>
+
+    <button class="btn" onclick="runMultiHorizonForecast()">📊 Compute Multi-Horizon Forecast & Financial Risk</button>
+
+    <div id="multihorizonResultsArea" style="margin-top: 22px; display: none;">
+      <h3 class="section-head" style="font-size: 15px; margin-bottom: 10px; color: var(--accent-rose);">Financial Cost of Inaccurate Forecasting (Mishra et al. 2025 finding):</h3>
+      <div class="grid-3">
+        <div class="stat-card" style="border-color:var(--accent-rose);">
+          <div class="stat-label">Total Annual Financial Risk</div>
+          <div class="stat-value" id="mhRiskInr" style="color:var(--accent-rose);">--</div>
+          <div class="stat-sub" id="mhRiskUsd">--</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">Cost per 1% Forecasting Deviation</div>
+          <div class="stat-value" id="mhPer1PctCost" style="color:var(--accent-amber);">--</div>
+          <div class="stat-sub">Spinning reserve imbalance penalty</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Avoidable Reserve Penalties</div>
+          <div class="stat-value" id="mhReservePenalty" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">Recoverable with AI forecasting</div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);" id="mhChartTitle">Load Forecast Trajectory with Confidence Bounds:</h3>
+      <div class="graph-wrapper">
+        <svg id="svgMhGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 2: MULTI-APPLIANCE FLEET SCHEDULER -->
+<!-- ======================================================== -->
+<div id="tab-fleet" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>⏰ Multi-Appliance Pareto Fleet Optimizer</h2>
+        <p class="card-desc">Schedules EV, Heat Pump, Water Heater, and Laundry concurrently without tripping Sanctioned Connection Load</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Sanctioned Max Demand Limit (kW)</label>
+        <input id="fleetSanctioned" type="number" step="0.5" value="6.0">
+        <p class="card-desc">Utility breaker limit: instantaneous power must not exceed this.</p>
+      </div>
+      <div class="form-group">
+        <label>Off-Peak Tariff (₹/kWh)</label>
+        <input id="fleetRateOff" type="number" step="0.1" value="4.5">
+      </div>
+      <div class="form-group">
+        <label>Peak Surcharge Tariff (₹/kWh)</label>
+        <input id="fleetRatePeak" type="number" step="0.1" value="9.5">
+      </div>
+    </div>
+
+    <h3 class="section-head" style="font-size: 15px; margin: 14px 0 10px; color: var(--accent-blue);">Household Appliances to Coordinate:</h3>
+    <div class="grid-3" id="fleetAppliancesList">
+      <div class="stat-card">
+        <strong>🚗 EV Smart Charger</strong>
+        <p style="font-size: 12px; color: var(--text-muted);">3.3 kW · 3 Hours Duration · Earliest: 00:00 - Latest: 08:00</p>
+      </div>
+      <div class="stat-card">
+        <strong>🚿 Electric Geyser / Heater</strong>
+        <p style="font-size: 12px; color: var(--text-muted);">2.0 kW · 1 Hour Duration · Earliest: 05:00 - Latest: 09:00</p>
+      </div>
+      <div class="stat-card">
+        <strong>🧺 Washing Machine</strong>
+        <p style="font-size: 12px; color: var(--text-muted);">1.2 kW · 2 Hours Duration · Earliest: 09:00 - Latest: 17:00</p>
+      </div>
+    </div>
+
+    <button class="btn" style="margin-top: 18px;" onclick="runFleetOptimizer()">🚀 Run Coordinated Multi-Appliance Optimizer</button>
+
+    <div id="fleetResultsArea" style="margin-top: 24px; display: none;">
+      <div class="grid-3">
+        <div class="stat-card amber">
+          <div class="stat-label">Coordinated Fleet Peak</div>
+          <div class="stat-value" id="fleetMaxPeak">--</div>
+          <div class="stat-sub" id="fleetBreakerStatus">Breaker Safe</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Peak Demand Shaved</div>
+          <div class="stat-value" id="fleetPeakShaved" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">vs Uncoordinated Spike</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">Optimized Fleet Bill</div>
+          <div class="stat-value" id="fleetTotalCost">--</div>
+          <div class="stat-sub">Under ToD Tariffs</div>
+        </div>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">Coordinated Dispatch Gantt Timeline:</h3>
+      <div id="fleetGantt" style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px;"></div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 20px 0 10px; color: var(--accent-blue);">Aggregate Load Curve vs Sanctioned Limit:</h3>
+      <div class="graph-wrapper">
+        <svg id="svgFleetGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 3: SOLAR ROOFTOP + BESS DIGITAL TWIN -->
+<!-- ======================================================== -->
+<div id="tab-solar" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>☀️ Solar Rooftop + BESS Battery Microgrid Digital Twin</h2>
+        <p class="card-desc">Simulate solar PV generation, lithium battery SOC dynamics, and Net Metering export earnings</p>
+      </div>
+    </div>
+
+    <!-- Live Animated Power Flow Canvas -->
+    <div style="margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="font-size: 13px; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">⚡ Cyber-Physical Energy Flow Visualizer</span>
+        <span style="font-size: 12px; color: var(--text-muted);">Real-Time Kinetic Particles</span>
+      </div>
+      <canvas id="flowCanvas"></canvas>
+    </div>
+
+    <div class="grid-4">
+      <div class="form-group">
+        <label>Solar PV Capacity (kWp)</label>
+        <input id="solarKw" type="number" step="0.5" value="4.0">
+      </div>
+      <div class="form-group">
+        <label>Battery Storage (kWh)</label>
+        <input id="batteryKwh" type="number" step="1" value="10.0">
+      </div>
+      <div class="form-group">
+        <label>Cloud Cover Factor (%)</label>
+        <input id="cloudCover" type="number" min="0" max="100" value="15">
+      </div>
+      <div class="form-group">
+        <label>Net Metering Export (₹/kWh)</label>
+        <input id="exportTariff" type="number" step="0.5" value="4.0">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="simulateSolarMicrogrid()">⚡ Run 24h Microgrid Simulation</button>
+
+    <div id="solarStats" class="grid-4" style="margin-top: 20px; display: none;">
+      <div class="stat-card green">
+        <div class="stat-label">Solar Self-Sufficiency</div>
+        <div class="stat-value" id="solarSelfSuff" style="color:var(--accent-green);">--</div>
+        <div class="stat-sub">Independent from Grid</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Daily Solar Produced</div>
+        <div class="stat-value" id="solarProduced">--</div>
+        <div class="stat-sub">kWh / day clean energy</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Daily Savings</div>
+        <div class="stat-value" id="solarSavings" style="color:var(--accent-amber);">--</div>
+        <div class="stat-sub" id="solarAnnualSavings">--</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Grid Export Earnings</div>
+        <div class="stat-value" id="solarExport">--</div>
+        <div class="stat-sub">Net Metering Credit</div>
+      </div>
+    </div>
+
+    <div class="graph-wrapper" style="margin-top: 18px;">
+      <svg id="svgSolarGraph" viewBox="0 0 900 280"></svg>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 4: GRID CARBON & 50HZ DROOP -->
+<!-- ======================================================== -->
+<div id="tab-carbon" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🌿 Autonomous Grid Carbon & 50Hz Frequency Droop Engine</h2>
+        <p class="card-desc">Real-time marginal emissions ($gCO_2/kWh$) & grid frequency telemetry guiding green demand response</p>
+      </div>
+      <button class="btn btn-secondary" style="width: auto;" onclick="loadCarbonProfile()">Refresh Grid Telemetry</button>
+    </div>
+
+    <div class="grid-3">
+      <div class="stat-card purple">
+        <div class="stat-label">Simulated Grid Frequency</div>
+        <div class="stat-value" id="gridFreqVal">49.95 Hz</div>
+        <div class="stat-sub">Nominal: 50.00 Hz (Droop: Normal)</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Current Carbon Intensity</div>
+        <div class="stat-value" id="gridCarbonVal" style="color:var(--accent-amber);">580 gCO₂/kWh</div>
+        <div class="stat-sub">Marginal Generation Mix</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Optimal Clean Green Window</div>
+        <div class="stat-value" id="gridGreenSlot" style="color:var(--accent-green);">11:00 - 15:00</div>
+        <div class="stat-sub">Solar Curtailment Absorption</div>
+      </div>
+    </div>
+
+    <div class="graph-wrapper">
+      <svg id="svgCarbonGraph" viewBox="0 0 900 280"></svg>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 5: AI ANOMALY & VAMPIRE SENTINEL -->
+<!-- ======================================================== -->
+<div id="tab-anomaly" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🛡️ AI Anomaly & Phantom Vampire Load Sentinel</h2>
+        <p class="card-desc">Residual Z-Score and overnight baseload analysis detecting vampire power leaks and meter bypass</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Inject Diagnostic Test Scenario</label>
+      <select id="anomalyInjectType">
+        <option value="none">Normal Smart Meter Telemetry (Baseline)</option>
+        <option value="vampire_leak" selected>Phantom Standby Vampire Leak (01:00 - 05:00 sleeping hours)</option>
+        <option value="compressor_fault">Stuck AC/Refrigeration Compressor Continuous Surge</option>
+        <option value="meter_tamper">Abnormal Demand Plunge (Suspected Meter Bypass)</option>
+      </select>
+    </div>
+
+    <button class="btn" onclick="runAnomalyDiagnostics()">🕵️ Run Statistical Residual Audit</button>
+
+    <div id="anomalyDiagnosticsArea" style="margin-top: 20px; display: none;">
+      <div class="grid-3">
+        <div class="stat-card amber">
+          <div class="stat-label">Diagnostic Status</div>
+          <div class="stat-value" id="anomalyStatusText">--</div>
+          <div class="stat-sub" id="anomalyCountSub">--</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Wasted Energy Detected</div>
+          <div class="stat-value" id="anomalyWastedKwh" style="color:var(--accent-rose);">--</div>
+          <div class="stat-sub">kWh / day leak</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Annual Financial Loss</div>
+          <div class="stat-value" id="anomalyAnnualCost" style="color:var(--accent-amber);">--</div>
+          <div class="stat-sub">Estimated wasted ₹ / year</div>
+        </div>
+      </div>
+
+      <h3 class="section-head" style="font-size: 15px; margin: 18px 0 10px; color: var(--accent-blue);">Diagnostic Findings & Root Causes:</h3>
+      <div id="anomalyReportList"></div>
+
+      <div class="graph-wrapper" style="margin-top: 18px;">
+        <svg id="svgAnomalyGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 6: VIRTUAL POWER PLANT (VPP) STRESS TEST -->
+<!-- ======================================================== -->
+<div id="tab-vpp" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🌪️ Virtual Power Plant (VPP) Extreme Weather & Blackout Stress-Tester</h2>
+        <p class="card-desc">Simulate catastrophic heatwaves and transformer overloads, showing how AI Demand Response prevents blackouts</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Stress Scenario</label>
+        <select id="vppScenario">
+          <option value="heatwave_surge" selected>Extreme Summer Heatwave Surge (+6°C)</option>
+          <option value="transformer_overload">Substation Transformer Overload</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Heatwave Temp Rise (+°C)</label>
+        <input id="vppHeatDelta" type="number" step="1" value="6.0">
+      </div>
+      <div class="form-group">
+        <label>Emergency Battery Storage (kWh)</label>
+        <input id="vppBattery" type="number" value="10.0">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runVppStressSim()">⚡ Execute Grid Stress Simulation</button>
+
+    <div id="vppResultsArea" style="margin-top: 20px; display: none;">
+      <div class="grid-4">
+        <div class="stat-card rose">
+          <div class="stat-label">Blackout Status</div>
+          <div class="stat-value" id="vppBlackoutStatus" style="font-size: 18px;">--</div>
+          <div class="stat-sub" id="vppBlackoutSub">--</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">Negawatts Generated</div>
+          <div class="stat-value" id="vppNegawatts" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">AI Deferral Savings</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">VPP Reward Earned</div>
+          <div class="stat-value" id="vppReward" style="color:var(--accent-amber);">--</div>
+          <div class="stat-sub">₹12/negawatt reward</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Microgrid Autonomy</div>
+          <div class="stat-value" id="vppAutonomy">--</div>
+          <div class="stat-sub">Hours of backup power</div>
+        </div>
+      </div>
+
+      <div class="graph-wrapper" style="margin-top: 18px;">
+        <svg id="svgVppGraph" viewBox="0 0 900 280"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 7: ENERGY HEALTH AUDIT & ESG REPORT -->
+<!-- ======================================================== -->
+<div id="tab-audit" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>📋 Household Energy Health Audit & ESG Grading</h2>
+        <p class="card-desc">Certified Peak-to-Average Ratio (PAR), Load Factor (LF), and printable energy audit certificate</p>
+      </div>
+      <button class="btn btn-secondary" style="width: auto;" onclick="window.print()">🖨️ Print / Save Audit Report</button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap;">
+      <div class="grade-badge" id="auditGradeBadge">A</div>
+      <div>
+        <h3 style="font-size: 22px; color: var(--accent-blue);" id="auditBadgeTitle">Balanced Grid Citizen</h3>
+        <p style="font-size: 13px; color: var(--text-muted);" id="auditTimestamp">Certified AI Energy Health Assessment</p>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="stat-card amber">
+        <div class="stat-label">Load Factor (LF)</div>
+        <div class="stat-value" id="auditLF">0.62</div>
+        <div class="stat-sub">Ideal > 0.60</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Peak-to-Average (PAR)</div>
+        <div class="stat-value" id="auditPAR">1.61</div>
+        <div class="stat-sub">Ideal &lt; 1.65</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Projected Monthly Bill</div>
+        <div class="stat-value" id="auditBill">₹3,420</div>
+        <div class="stat-sub">Standard Tariff</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Monthly Carbon Footprint</div>
+        <div class="stat-value" id="auditCarbon">342 kg</div>
+        <div class="stat-sub">CO₂ Emissions</div>
+      </div>
+    </div>
+
+    <h3 class="section-head" style="font-size: 16px; margin: 24px 0 12px; color: var(--accent-blue);">Personalized AI Action Plan:</h3>
+    <div id="auditRecommendations" class="result-box"></div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 8: CONVERSATIONAL SATHI COPILOT -->
+<!-- ======================================================== -->
+<div id="tab-copilot" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>💬 Sathi Natural Language & Voice AI Copilot</h2>
+        <p class="card-desc">Talk or type natural requests: schedule appliances, audit consumption, or simulate solar</p>
+      </div>
+      <button class="btn btn-secondary" style="width: auto;" onclick="toggleVoiceInput()" id="micBtn">🎙️ Speak Command</button>
+    </div>
+
+    <div class="copilot-messages" id="copilotChat">
+      <div class="chat-msg chat-agent">
+        <strong>⚡ Sathi AI:</strong> Hello! I am your autonomous smart energy copilot. Ask me questions like:
+        <br>• <em>"Schedule my washing machine for 2 hours"</em>
+        <br>• <em>"What are today's peak hours and tariff rates?"</em>
+        <br>• <em>"Simulate 4 kW solar rooftop and battery storage"</em>
+        <br>• <em>"Audit my household energy health grade"</em>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input id="copilotInput" placeholder="Type your energy request (e.g., 'Schedule my EV for 3 hours')..." onkeypress="if(event.key==='Enter') sendCopilotQuery()">
+      <button class="btn" style="width: 120px;" onclick="sendCopilotQuery()">Send</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- TAB 9: GRID TIME MACHINE (ORIGINAL PRESERVED & ENHANCED) -->
+<!-- ======================================================== -->
+<div id="tab-timemachine" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🕒 Grid Time Machine</h2>
+        <p class="card-desc">Simulate shifting an appliance operating window and measure instantaneous peak reduction</p>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Appliance Name</label>
+        <input id="tmAppliance" value="Washing Machine">
+      </div>
+      <div class="form-group">
+        <label>Appliance Power (Watts)</label>
+        <input id="tmPower" type="number" value="1000">
+      </div>
+      <div class="form-group">
+        <label>Duration (Hours)</label>
+        <input id="tmDuration" type="number" value="2">
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label>Original Start Hour (0–23)</label>
+        <input id="tmOriginal" type="number" value="20">
+      </div>
+      <div class="form-group">
+        <label>New Optimized Start Hour (0–23)</label>
+        <input id="tmNew" type="number" value="14">
+      </div>
+    </div>
+
+    <button class="btn" onclick="runGridTimeMachine()">🕒 Simulate Time-Shift Impact</button>
+
+    <div id="tmStats" class="grid-4" style="margin-top: 20px; display: none;">
+      <div class="stat-card amber">
+        <div class="stat-label">Peak Before</div>
+        <div class="stat-value" id="tmPeakBefore">--</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-label">Peak After</div>
+        <div class="stat-value" id="tmPeakAfter">--</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Peak Reduction</div>
+        <div class="stat-value" id="tmPeakReduction" style="color:var(--accent-green);">--</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-label">Appliance Energy</div>
+        <div class="stat-value" id="tmApplianceEnergy">--</div>
+      </div>
+    </div>
+
+    <div class="graph-wrapper" style="margin-top: 18px;">
+      <svg id="svgTimeMachineGraph" viewBox="0 0 900 280"></svg>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB: INDUSTRIAL SCADA & 2x2 FACTORIAL PLC STUDIO -->
+<!-- Derived from Sriamad & Nangtin (IEEE iEECON 2025) -->
+<!-- ======================================================== -->
+<div id="tab-scada" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🏭 Industrial SCADA & 2×2 Factorial PLC Load Control Studio <span class="paper-pill ieee">IEEE iEECON 2025</span></h2>
+        <p class="card-desc">Full 2×2 Factorial Design of Experiments (DOE), Ordinary Least Squares (OLS) Response Surface & Programmable Logic Controller (PLC) Automation (IEEE iEECON 2025)</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('scada_doe')">Load Baseline Run</button>
+    </div>
+
+    <!-- Mathematical Model Formula Card -->
+    <div class="formula-box">
+      <strong>📐 Empirical Regression Model (Sriamad & Nangtin Eq. 2):</strong><br>
+      <code>y = β₀ + β₁(Type 1: Chiller) + β₂(Type 2: Wall AC) + β₃(Type 1 × Type 2) + ε</code><br>
+      <span style="color:#bae6fd;">Solved OLS Parameters: β₀ = 180.52, β₁ = 162.58, β₂ = 12.79, β₃ = 5.12</span>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Type 1: Chiller Operating State (X₁)</label>
+        <select id="scadaChillerState" onchange="runScadaFactorial()">
+          <option value="1.0" selected>+1 (Chiller ON - Full 137.2k Btu)</option>
+          <option value="-1.0">-1 (Chiller OFF / Tripped)</option>
+          <option value="0.0">0 (50% Throttled VFD)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Type 2: Wall-Type AC Operating State (X₂)</label>
+        <select id="scadaAcState" onchange="runScadaFactorial()">
+          <option value="1.0" selected>+1 (Wall ACs ON - 4 Classrooms)</option>
+          <option value="-1.0">-1 (Wall ACs OFF)</option>
+          <option value="0.0">0 (Eco Duty-Cycling)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>PLC Load Operating Condition (Fig. 4)</label>
+        <select id="scadaPlcState" onchange="runScadaFactorial()">
+          <option value="1">State 1: Reducing Load Behavior (Off-Peak)</option>
+          <option value="2" selected>State 2: Shifting Load Usage (Pre-cooling)</option>
+          <option value="3">State 3: Notification & Standby Monitoring</option>
+          <option value="4">State 4: Postpone Working Hours (Chiller Service Delay)</option>
+          <option value="5">State 5: Load Power Reduction (50% VFD Limit)</option>
+          <option value="6">State 6: Emergency Peak Trip / Stopping the Load</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="form-group">
+        <label>TOU On-Peak Tariff Rate (₹/kWh)</label>
+        <input id="scadaOnPeakRate" type="number" step="0.1" value="5.80" oninput="runScadaFactorial()">
+      </div>
+      <div class="form-group">
+        <label>TOU Off-Peak Tariff Rate (₹/kWh)</label>
+        <input id="scadaOffPeakRate" type="number" step="0.1" value="2.64" oninput="runScadaFactorial()">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runScadaFactorial()">⚡ Execute SCADA & PLC Synthesis</button>
+
+    <!-- Results Area -->
+    <div id="scadaResultsArea" style="margin-top: 24px;">
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-label">Predicted Peak Demand</div>
+          <div class="stat-value" id="scadaPeakDemand">--</div>
+          <div class="stat-sub">via OLS Regression (kWh)</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">On-Peak Running Cost</div>
+          <div class="stat-value" id="scadaOnPeakCost" style="color:var(--accent-rose);">--</div>
+          <div class="stat-sub">Peak pricing hours</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Off-Peak Running Cost</div>
+          <div class="stat-value" id="scadaOffPeakCost" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">Off-peak valley hours</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">TOU Shifting Savings</div>
+          <div class="stat-value" id="scadaTouSavings" style="color:var(--accent-blue);">--</div>
+          <div class="stat-sub">Relocation dividend</div>
+        </div>
+      </div>
+
+      <!-- PLC Hardware Relay Digital Twin -->
+      <div class="card" style="margin-top:20px; background:var(--bg-secondary);">
+        <h3 class="section-head" style="font-size: 15px; margin-bottom: 12px; color: var(--accent-blue);">🔌 Virtual SCADA / PLC Relay Control Board (Hardware Digital Twin)</h3>
+        <div class="grid-2">
+          <div>
+            <div class="plc-relay-card">
+              <span><strong>Relay 1:</strong> Air Cool Chiller Main Contactor (ACH)</span>
+              <div><span id="r1Status" style="font-size:12px; font-weight:700;">CLOSED</span><span id="r1Led" class="relay-led led-on"></span></div>
+            </div>
+            <div class="plc-relay-card">
+              <span><strong>Relay 2:</strong> Air Handling Unit (AHU) VFD Inverter</span>
+              <div><span id="r2Status" style="font-size:12px; font-weight:700;">ACTIVE (100%)</span><span id="r2Led" class="relay-led led-on"></span></div>
+            </div>
+          </div>
+          <div>
+            <div class="plc-relay-card">
+              <span><strong>Relay 3:</strong> Wall-Type AC Classroom Group (PLC 1-4)</span>
+              <div><span id="r3Status" style="font-size:12px; font-weight:700;">ENERGIZED</span><span id="r3Led" class="relay-led led-on"></span></div>
+            </div>
+            <div class="plc-relay-card">
+              <span><strong>Relay 4:</strong> Chilled Water Pump (CHP)</span>
+              <div><span id="r4Status" style="font-size:12px; font-weight:700;">CIRCULATING</span><span id="r4Led" class="relay-led led-on"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="result-box" id="plcActionBox" style="margin-top:12px; padding:10px 14px; font-size:13px;"></div>
+      </div>
+
+      <!-- 3D Response Surface Graph & Factorial Runs -->
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">📊 3D Response Surface: Peak Demand vs Chiller & AC</h3>
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Isometric view of OLS interaction surface. Glowing coordinate indicates active setpoint.</p>
+          <div class="graph-wrapper" style="margin-top:0;">
+            <svg id="svgScadaSurface" viewBox="0 0 500 280" style="min-width:auto; height:260px;"></svg>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">📋 2×2 Full Factorial Runs (Sriamad & Nangtin Table 6)</h3>
+          <div style="overflow-x:auto;">
+            <table class="data-table" style=" font-size:12px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                  <th style="padding:8px 10px;">Run</th>
+                  <th style="padding:8px 10px;">Chiller</th>
+                  <th style="padding:8px 10px;">Wall AC</th>
+                  <th style="padding:8px 10px;">Peak Demand</th>
+                  <th style="padding:8px 10px;">Cost (On-Peak)</th>
+                </tr>
+              </thead>
+              <tbody id="scadaRunRows"></tbody>
+            </table>
+          </div>
+
+          <h3 class="section-head" style="font-size: 14px; margin: 16px 0 8px; color: var(--accent-blue);">🏆 Benchmarking (Table 7)</h3>
+          <div style="overflow-x:auto;">
+            <table class="data-table" style=" font-size:11px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                  <th style="padding:6px 8px;">Study</th>
+                  <th style="padding:6px 8px;">Method</th>
+                  <th style="padding:6px 8px;">Accuracy</th>
+                  <th style="padding:6px 8px;">Peak Cut</th>
+                  <th style="padding:6px 8px;">SCADA</th>
+                </tr>
+              </thead>
+              <tbody id="scadaBenchmarkRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB: NATURE MO-DQN & PUMA OPTIMIZER (SAPOA) -->
+<!-- Derived from Saroha et al. (Nature Scientific Reports 2025) -->
+<!-- ======================================================== -->
+<div id="tab-modqn" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>🐾 Nature MO-DQN & Self-Adaptive Puma Optimizer (SAPOA) <span class="paper-pill nature">Nature Sci Rep 2025</span></h2>
+        <p class="card-desc">Multi-Objective Deep Q-Network & Bio-Inspired Puma Hunting Optimization for Appliance Scheduling & Peak-to-Average Ratio (PAR) Minimization (Nature 2025)</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('puma_rl')">Load Optimal Preset</button>
+    </div>
+
+    <!-- Mathematical Model Formula Card -->
+    <div class="formula-box">
+      <strong>🐾 Nature Paper Objective & Reward Balancing (Saroha et al. Eq. 14-16):</strong><br>
+      <code>Reward = - [ w · (Cost: λ_r · Energy) + (1 - w) · (User Dissatisfaction: θ_m) ]</code><br>
+      <span style="color:#bae6fd;">PAR Benchmark: 3.4286 (Unscheduled) ➔ 1.9765 (Proposed without RES) ➔ 1.0339 (Proposed with RES - 69.8% reduction!)</span>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Cost vs Comfort Weight (w): <span id="pumaWeightVal" class="range-slider-val">0.60</span></label>
+        <input id="pumaWeight" type="range" min="0.0" max="1.0" step="0.05" value="0.60" oninput="document.getElementById('pumaWeightVal').textContent=Number(this.value).toFixed(2); runMODQNPumaScheduler();">
+        <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-top:4px;">
+          <span>0.0 (Max Comfort)</span>
+          <span>1.0 (Min Cost)</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Renewable Energy (RES) Integration</label>
+        <select id="pumaResToggle" onchange="runMODQNPumaScheduler()">
+          <option value="true" selected>With Renewable Solar PV (RES ON)</option>
+          <option value="false">Without Renewables (Grid Only)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>AC Unhappiness Sensitivity (θ³_m)</label>
+        <input id="pumaAcTheta" type="number" min="0.1" max="1.0" step="0.05" value="0.35" oninput="runMODQNPumaScheduler()">
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="form-group">
+        <label>Washing Machine User Preferred Hour (r²_rt)</label>
+        <input id="pumaWasherHour" type="number" min="0" max="23" value="18" oninput="runMODQNPumaScheduler()">
+      </div>
+      <div class="form-group">
+        <label>Outdoor Ambient Temperature (°C)</label>
+        <input id="pumaTemp" type="number" value="30.0" oninput="runMODQNPumaScheduler()">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runMODQNPumaScheduler()">🐾 Run MO-DQN & Puma Optimizer</button>
+
+    <!-- Results Area -->
+    <div id="pumaResultsArea" style="margin-top: 24px;">
+      <div class="grid-4">
+        <div class="stat-card purple">
+          <div class="stat-label">Scheduled PAR</div>
+          <div class="stat-value" id="pumaSchedPar" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">Peak / Average Ratio</div>
+        </div>
+        <div class="stat-card rose">
+          <div class="stat-label">Unscheduled PAR</div>
+          <div class="stat-value" id="pumaUnschedPar" style="color:var(--accent-rose);">3.43</div>
+          <div class="stat-sub">Inefficient baseline</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">PAR Reduction</div>
+          <div class="stat-value" id="pumaParReduction" style="color:var(--accent-blue);">--</div>
+          <div class="stat-sub">Grid flattening gain</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Puma Hunting Mode</div>
+          <div class="stat-value" id="pumaPhaseMode" style="font-size:18px;">--</div>
+          <div class="stat-sub" id="pumaWasherResult">--</div>
+        </div>
+      </div>
+
+      <!-- Benchmark Bar Chart Comparison (Table 3, 4, 5) -->
+      <div class="card" style="margin-top:20px; background:var(--bg-secondary);">
+        <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">🏆 Nature Scientific Reports 2025 Algorithmic Benchmark (PAR & Cost)</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Comparative performance across Unscheduled, POA, SAPOA, MORL-POA, and Proposed MO-DQN+SAPOA.</p>
+        <div style="overflow-x:auto;">
+          <table class="data-table" style=" font-size:12px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                <th style="padding:8px 10px;">Method</th>
+                <th style="padding:8px 10px;">PAR (Without RES)</th>
+                <th style="padding:8px 10px;">PAR (With RES)</th>
+                <th style="padding:8px 10px;">Cost Units (No RES)</th>
+                <th style="padding:8px 10px;">Cost Units (With RES)</th>
+                <th style="padding:8px 10px;">Total Energy (kWh)</th>
+              </tr>
+            </thead>
+            <tbody id="pumaBenchmarkRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Multi-Series 24h Area Chart -->
+      <div class="card" style="margin-top:20px; background:var(--bg-secondary);">
+        <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">📈 24-Hour Adaptive Schedule Breakdown (Rigid, Shiftable, Controllable)</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Refrigerator (rigid), Washing Machine (shiftable window), and AC (controllable modulated) curves.</p>
+        <div class="graph-wrapper" style="margin-top:0;">
+          <svg id="svgPumaGraph" viewBox="0 0 900 280"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB: EV CHARGING GOVERNANCE & GRID STABILITY MATRIX -->
+<!-- Derived from Johnsi Rani & Suresh (IEEE ICDISS 2025) -->
+<!-- ======================================================== -->
+<div id="tab-evgov" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>⚡ EV Charging Governance & Grid Stability Matrix <span class="paper-pill ieee">IEEE ICDISS 2025</span></h2>
+        <p class="card-desc">Adaptive EV Charging Control, Demand-Side Management (DSM), and Grid Jitter Suppression (IEEE ICDISS 2025)</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('ev_governance')">Load Adaptive Preset</button>
+    </div>
+
+    <!-- Mathematical Model Formula Card -->
+    <div class="formula-box">
+      <strong>⚡ IEEE ICDISS 2025 Key Empirical Finding:</strong><br>
+      <span>Adaptive EV Control cuts peak load by <strong>30.0%</strong> (1450 kW ➔ 1015 kW), reduces voltage deviation by <strong>62.7%</strong> (7.5% ➔ 2.8%), lowers frequency jitter by <strong>66.6%</strong> (0.12 Hz ➔ 0.04 Hz), and slashes line losses by <strong>42.3%</strong>!</span>
+    </div>
+
+    <div class="grid-3">
+      <div class="form-group">
+        <label>EV Governance Strategy</label>
+        <select id="evgovStrategy" onchange="runEVGovernanceStability()">
+          <option value="uncontrolled">1. Uncontrolled Charging (No Governance)</option>
+          <option value="tou">2. Time-of-Use (TOU) Control</option>
+          <option value="centralized">3. Centralized Control</option>
+          <option value="adaptive" selected>4. Multi-Layer Adaptive Control (Proposed)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>EV Fleet Population: <span id="evgovPopVal" class="range-slider-val">1100 EVs</span></label>
+        <input id="evgovFleetPop" type="range" min="100" max="3000" step="100" value="1100" oninput="document.getElementById('evgovPopVal').textContent=this.value+' EVs'; runEVGovernanceStability();">
+      </div>
+      <div class="form-group">
+        <label>Grid Baseload (kW)</label>
+        <input id="evgovBaseLoad" type="number" value="950" oninput="runEVGovernanceStability()">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runEVGovernanceStability()">⚡ Evaluate Grid Governance Matrix</button>
+
+    <!-- Results Area -->
+    <div id="evgovResultsArea" style="margin-top: 24px;">
+      <div class="grid-4">
+        <div class="stat-card rose">
+          <div class="stat-label">Resulting Peak Load</div>
+          <div class="stat-value" id="evgovPeakLoad">--</div>
+          <div class="stat-sub">From 1450 kW Uncontrolled</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Peak Reduction</div>
+          <div class="stat-value" id="evgovPeakReduction" style="color:var(--accent-green);">--</div>
+          <div class="stat-sub">Grid strain mitigation</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">Average Wait Time</div>
+          <div class="stat-value" id="evgovWaitTime" style="color:var(--accent-blue);">--</div>
+          <div class="stat-sub">Driver queueing delay</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">User Satisfaction</div>
+          <div class="stat-value" id="evgovSatisfaction" style="color:var(--accent-cyan);">--</div>
+          <div class="stat-sub">Sufficiency & flexibility</div>
+        </div>
+      </div>
+
+      <!-- Grid Stability Standards Comparison (Table on Page 5) -->
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">🛡️ Power Grid Stability Standards (IEEE ICDISS 2025 Fig. 5)</h3>
+          <div style="overflow-x:auto;">
+            <table class="data-table" style=" font-size:12px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                  <th style="padding:8px 10px;">Stability Standard</th>
+                  <th style="padding:8px 10px;">Uncontrolled</th>
+                  <th style="padding:8px 10px;">Smart Control</th>
+                  <th style="padding:8px 10px;">Adaptive Control</th>
+                  <th style="padding:8px 10px;">Improvement</th>
+                </tr>
+              </thead>
+              <tbody id="evgovStabilityRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">☀️ Renewable Energy Utilization Breakdown (Fig. 3)</h3>
+          <div style="overflow-x:auto;">
+            <table class="data-table" style=" font-size:12px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                  <th style="padding:8px 10px;">Method</th>
+                  <th style="padding:8px 10px;">Solar (%)</th>
+                  <th style="padding:8px 10px;">Wind (%)</th>
+                  <th style="padding:8px 10px;">Total RE (%)</th>
+                </tr>
+              </thead>
+              <tbody id="evgovRenewableRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- V2G Peak Demand & Financial Incentive (Fig. 6) -->
+      <div class="card" style="margin-top:20px; background:var(--bg-secondary);">
+        <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">🚗 Vehicle-to-Grid (V2G) Peak Shaving & Driver Remuneration (Fig. 6)</h3>
+        <div style="overflow-x:auto;">
+          <table class="data-table" style=" font-size:12px; text-align:left; background:var(--bg-input); border-radius:6px; overflow:hidden;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border-color); color:var(--accent-blue);">
+                <th style="padding:8px 10px;">Scenario</th>
+                <th style="padding:8px 10px;">EVs Participating</th>
+                <th style="padding:8px 10px;">Energy Returned (kWh)</th>
+                <th style="padding:8px 10px;">% Grid Demand Met</th>
+                <th style="padding:8px 10px;">Incentive / EV (₹)</th>
+              </tr>
+            </thead>
+            <tbody id="evgovV2gRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<!-- TAB: SMART HOME PV & STORAGE AUTONOMY SIZING ARCHITECT -->
+<!-- Derived from Mnassri et al. (MDPI Energies 2025) -->
+<!-- ======================================================== -->
+<div id="tab-sizing" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>📐 Smart Home PV & Storage Autonomy Sizing Architect <span class="paper-pill mdpi">MDPI Energies 2025</span></h2>
+        <p class="card-desc">Diversified Demand Factor (DF = 0.58), Refrigerator Operating Factor (ROF = 0.42), 1-Day Battery Autonomy & 25-Year Life Cycle Sizing (MDPI Energies 2025)</p>
+      </div>
+      <button class="btn btn-secondary" style="width:auto;" onclick="loadPreset('sizing_calc')">Load Research Household</button>
+    </div>
+
+    <!-- Mathematical Model Formula Card -->
+    <div class="formula-box">
+      <strong>📐 MDPI Energies 2025 Engineering Dimensioning Formulas:</strong><br>
+      <code>E_daily = Σ(P_i × T_i), &nbsp; Diversity Factor (DF) = E_actual / E_connected = 42.5 / 73.5 = 0.58</code><br>
+      <code>Usable BESS = 42.5 kWh, &nbsp; Nominal BESS = 42.5 / (80% DoD × 90% η) = 59.0 kWh</code><br>
+      <code>PV Size = (42.5 kWh × 1.08 overcast factor) / 5.8 Peak Sun Hours = 10.7 kW (36 Panels, 61.2 m² array, 75-90 m² roof)</code>
+    </div>
+
+    <div class="grid-4">
+      <div class="form-group">
+        <label>Air Conditioning Units (2000W)</label>
+        <input id="szAcUnits" type="number" min="1" max="10" value="4" oninput="runSmartHomeSizing()">
+      </div>
+      <div class="form-group">
+        <label>Refrigerators (150W)</label>
+        <input id="szFridgeUnits" type="number" min="1" max="5" value="1" oninput="runSmartHomeSizing()">
+      </div>
+      <div class="form-group">
+        <label>Lighting Fixtures (100W)</label>
+        <input id="szLighting" type="number" min="1" max="20" value="5" oninput="runSmartHomeSizing()">
+      </div>
+      <div class="form-group">
+        <label>Various Appliances (1000W)</label>
+        <input id="szMisc" type="number" min="1" max="15" value="3" oninput="runSmartHomeSizing()">
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:10px;">
+      <div class="form-group">
+        <label>Diversity Factor (DF): <span id="szDfVal" class="range-slider-val">0.58</span></label>
+        <input id="szDf" type="range" min="0.30" max="0.95" step="0.02" value="0.58" oninput="document.getElementById('szDfVal').textContent=Number(this.value).toFixed(2); runSmartHomeSizing();">
+      </div>
+      <div class="form-group">
+        <label>Average Daily Sun Hours (H_sun)</label>
+        <input id="szSunHours" type="number" step="0.1" value="5.8" oninput="runSmartHomeSizing()">
+      </div>
+      <div class="form-group">
+        <label>Electricity Tariff (₹/kWh)</label>
+        <input id="szTariff" type="number" step="0.1" value="7.50" oninput="runSmartHomeSizing()">
+      </div>
+    </div>
+
+    <button class="btn btn-emerald" onclick="runSmartHomeSizing()">📐 Calculate Architectural Sizing</button>
+
+    <!-- Results Area -->
+    <div id="sizingResultsArea" style="margin-top: 24px;">
+      <div class="grid-4">
+        <div class="stat-card purple">
+          <div class="stat-label">Theoretical Connected Load</div>
+          <div class="stat-value" id="szConnectedLoad">73.5 kWh</div>
+          <div class="stat-sub">Unrealistic 100% duty cycle</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Diversified Daily Demand</div>
+          <div class="stat-value" id="szDiversifiedLoad" style="color:var(--accent-green);">42.5 kWh</div>
+          <div class="stat-sub">Applied DF = 0.58 & ROF = 0.42</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">1-Day Autonomy BESS</div>
+          <div class="stat-value" id="szBessCapacity" style="color:var(--accent-blue);">59.0 kWh</div>
+          <div class="stat-sub">42.5 kWh usable (80% DoD)</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">Installed PV Array</div>
+          <div class="stat-value" id="szPvCapacity" style="color:var(--accent-amber);">10.7 kW</div>
+          <div class="stat-sub" id="szPvPanels">36 Panels (300W each)</div>
+        </div>
+      </div>
+
+      <!-- Rooftop Space & Physical Footprint -->
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">🏠 Rooftop & Solar Surface Allocation (Mnassri Fig. 7)</h3>
+          <div class="result-box" style="margin-top:8px;">
+            <p>• <strong>Net Solar Module Surface Area:</strong> <span id="szNetArea">61.2</span> m²</p>
+            <p>• <strong>Required Usable Rooftop Space:</strong> <span id="szRoofArea">75.0 - 90.0</span> m²</p>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">*Includes 25%–45% buffer spacing to prevent row-on-row shading and allow maintenance walkways.</p>
+            <p style="margin-top:8px;">• <strong>Daily Solar Yield:</strong> <span id="szDailyGen">62.0</span> kWh/day (comfortably covers 42.5 kWh diversified demand + battery charging margin).</p>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--bg-secondary);">
+          <h3 class="section-head" style="font-size: 15px; margin-bottom: 8px; color: var(--accent-blue);">💰 25-Year Economic Life Cycle Feasibility (Eq. 29)</h3>
+          <div class="result-box" style="margin-top:8px;">
+            <p>• <strong>Estimated Turnkey CAPEX:</strong> ₹<span id="szCapex">--</span></p>
+            <p>• <strong>Daily Net Economic Savings:</strong> ₹<span id="szDailySavings">--</span> / day</p>
+            <p>• <strong>Simple Payback Period:</strong> <span id="szPayback" style="color:var(--accent-green); font-weight:700;">--</span> Years</p>
+            <p>• <strong>25-Year Net Discounted Benefit (B_lifetime):</strong> ₹<span id="szLifetimeBenefit" style="color:var(--accent-blue); font-weight:700;">--</span></p>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">*Accounts for 0.5%/yr PV degradation, annual O&M, and full battery cell replacement at Year 12.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-text">
+    <span>⚡ GridSathi</span> · AI Energy Forecasting & Smart Demand-Side Scheduling Platform ·
+    Powered by <span>FastAPI</span>, <span>XGBoost</span> & <span>17 Research-Backed Features</span>
+  </div>
+</footer>
+
+<script>
+// Resilient API Base: handles http://127.0.0.1:8000, localhost, or direct file:// opening
+const API_BASE = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
+  ? window.location.origin
+  : 'http://127.0.0.1:8000';
+
+// Tab Switching
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  
+  const target = document.getElementById(`tab-${tabId}`);
+  if (target) target.classList.add('active');
+  
+  const btn = document.querySelector(`.tab-btn[onclick*="'${tabId}'"]`);
+  if (btn) btn.classList.add('active');
+
+  // Automatically execute feature simulation when tab is opened
+  try {
+    if (tabId === 'forecast') load24HourForecast();
+    else if (tabId === 'scada') runScadaFactorial();
+    else if (tabId === 'modqn') runMODQNPumaScheduler();
+    else if (tabId === 'evgov') runEVGovernanceStability();
+    else if (tabId === 'sizing') runSmartHomeSizing();
+    else if (tabId === 'v2h') runV2HDispatcher();
+    else if (tabId === 'budget') runMidMonthBudgetOptimizer();
+    else if (tabId === 'hho') runHHOLab();
+    else if (tabId === 'multihorizon') runMultiHorizonForecast();
+    else if (tabId === 'fleet') runFleetOptimizer();
+    else if (tabId === 'solar') { simulateSolarMicrogrid(); startFlowAnimation(); }
+    else if (tabId === 'carbon') loadCarbonProfile();
+    else if (tabId === 'anomaly') runAnomalyDiagnostics();
+    else if (tabId === 'vpp') runVppStressSim();
+    else if (tabId === 'audit') loadEnergyAudit();
+    else if (tabId === 'timemachine') runGridTimeMachine();
+  } catch (err) {
+    console.warn(`Tab ${tabId} auto-run:`, err);
+  }
+}
+
+// Theme Toggle
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'light' ? '🌙 Dark' : '☀️ Light';
+}
+
+// Preset Loader
+function loadPreset(preset, btnElement) {
+  // Update active pill styling
+  document.querySelectorAll('.preset-pill').forEach(p => p.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    // Find pill by matching onclick argument
+    document.querySelectorAll('.preset-pill').forEach(p => {
+      if (p.getAttribute('onclick') && p.getAttribute('onclick').includes(preset)) {
+        p.classList.add('active');
+      }
+    });
+  }
+  if (preset === 'summer_heat') {
+    document.getElementById('fcTemp').value = '38.0';
+    document.getElementById('fcMonth').value = '5';
+    switchTab('forecast');
+    predictSingleHour();
+    load24HourForecast();
+  } else if (preset === 'scada_doe') {
+    switchTab('scada');
+    document.getElementById('scadaChillerState').value = '1.0';
+    document.getElementById('scadaAcState').value = '1.0';
+    document.getElementById('scadaPlcState').value = '2';
+    runScadaFactorial();
+  } else if (preset === 'puma_rl') {
+    switchTab('modqn');
+    document.getElementById('pumaWeight').value = '0.60';
+    document.getElementById('pumaWeightVal').textContent = '0.60';
+    document.getElementById('pumaResToggle').value = 'true';
+    runMODQNPumaScheduler();
+  } else if (preset === 'ev_governance') {
+    switchTab('evgov');
+    document.getElementById('evgovStrategy').value = 'adaptive';
+    document.getElementById('evgovFleetPop').value = '1100';
+    document.getElementById('evgovPopVal').textContent = '1100 EVs';
+    runEVGovernanceStability();
+  } else if (preset === 'sizing_calc') {
+    switchTab('sizing');
+    document.getElementById('szAcUnits').value = '4';
+    document.getElementById('szFridgeUnits').value = '1';
+    document.getElementById('szDf').value = '0.58';
+    document.getElementById('szDfVal').textContent = '0.58';
+    runSmartHomeSizing();
+  } else if (preset === 'v2h_v2g') {
+    switchTab('v2h');
+    document.getElementById('v2hEvSoc').value = '80';
+    document.getElementById('v2hReserveSoc').value = '40';
+    runV2HDispatcher();
+  } else if (preset === 'mid_month_budget') {
+    switchTab('budget');
+    document.getElementById('mbBudgetLimit').value = '1600';
+    runMidMonthBudgetOptimizer();
+  } else if (preset === 'hho_lab') {
+    switchTab('hho');
+    runHHOLab();
+  } else if (preset === 'multi_horizon') {
+    switchTab('multihorizon');
+    runMultiHorizonForecast();
+  } else if (preset === 'ev_fleet') {
+    switchTab('fleet');
+    runFleetOptimizer();
+  } else if (preset === 'solar_storage') {
+    switchTab('solar');
+    simulateSolarMicrogrid();
+  } else if (preset === 'vampire_leak') {
+    switchTab('anomaly');
+    document.getElementById('anomalyInjectType').value = 'vampire_leak';
+    runAnomalyDiagnostics();
+  }
+}
+
+// Universal API Helper
+async function apiCall(path, method = 'GET', body = null) {
+  const options = {
+    method,
+    headers: { 'Content-Type': 'application/json' }
+  };
+  if (body) options.body = JSON.stringify(body);
+  const resp = await fetch(`${API_BASE}${path}`, options);
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.detail || `HTTP ${resp.status}`);
+  }
+  return resp.json();
+}
+
+// ==========================================
+// 1. FORECASTING & PEAKS
+// ==========================================
+async function predictSingleHour() {
+  const hour = Number(document.getElementById('fcHour').value);
+  const day = Number(document.getElementById('fcDay').value);
+  const month = Number(document.getElementById('fcMonth').value);
+  const temp = Number(document.getElementById('fcTemp').value);
+
+  try {
+    const data = await apiCall('/predict', 'POST', {
+      hour, day_of_week: day, month, temperature: temp
+    });
+
+    document.getElementById('predVal').textContent = data.predicted_consumption_kwh.toFixed(2);
+    document.getElementById('predCI').textContent = `±${data.confidence_interval_95.margin_error_kwh} (${data.confidence_interval_95.lower_bound_kwh} - ${data.confidence_interval_95.upper_bound_kwh})`;
+    document.getElementById('predTariff').textContent = `₹${data.hour_context.tariff_rate_inr}/kWh`;
+    document.getElementById('predCost').textContent = `Est. Cost: ₹${data.hour_context.estimated_hourly_cost_inr} (${data.hour_context.tariff_tier})`;
+    document.getElementById('predStats').style.display = 'grid';
+  } catch (err) {
+    alert('Prediction Error: ' + err.message);
+  }
+}
+
+async function load24HourForecast() {
+  const day = Number(document.getElementById('fcDay').value);
+  const month = Number(document.getElementById('fcMonth').value);
+  const temp = Number(document.getElementById('fcTemp').value);
+
+  try {
+    const data = await apiCall('/peak-hours', 'POST', {
+      hour: 12, day_of_week: day, month, temperature: temp
+    });
+
+    document.getElementById('dayTotalKwh').textContent = data.daily_total_kwh;
+    const peak = data.peak_demand_hours[0];
+    document.getElementById('dayPeakKwh').textContent = `${peak.predicted_consumption_kwh} kWh`;
+    document.getElementById('dayPeakHour').textContent = `Peak at ${peak.hour}:00`;
+    document.getElementById('dayPAR').textContent = data.peak_to_average_ratio;
+    const low = data.low_demand_hours[0];
+    document.getElementById('dayLowHour').textContent = `Hour ${low.hour}:00`;
+
+    document.getElementById('forecastSummaryCards').style.display = 'grid';
+
+    // Draw SVG Forecast
+    const svg = document.getElementById('svgForecast24');
+    const values = data.hourly_forecast.map(d => d.predicted_consumption_kwh);
+    renderMultiSeriesSVG(svg, [
+      { name: 'Predicted Demand', values, color: '#38bdf8' }
+    ], 'Demand (kWh)');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function fetchXAI() {
+  try {
+    const data = await apiCall('/explain-ai');
+    const container = document.getElementById('xaiList');
+    container.innerHTML = data.features.map(f => `
+      <div class="xai-item">
+        <div class="xai-header">
+          <span>${f.feature.toUpperCase()}</span>
+          <span>${f.importance_percent.toFixed(1)}%</span>
+        </div>
+        <div class="xai-track">
+          <div class="xai-bar" style="width: ${f.importance_percent}%"></div>
+        </div>
+        <p class="xai-desc">${f.explanation}</p>
+      </div>
+    `).join('');
+  } catch (err) {
+    alert('XAI Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// RESEARCH PAPER BACKED FUNCTIONS
+// ==========================================
+
+// 1. V2H & V2G Hierarchical Adaptive Dispatcher
+async function runV2HDispatcher() {
+  const homeCap = Number(document.getElementById('v2hHomeBattCap').value);
+  const homeSoc = Number(document.getElementById('v2hHomeBattSoc').value);
+  const evCap = Number(document.getElementById('v2hEvCap').value);
+  const evSoc = Number(document.getElementById('v2hEvSoc').value);
+  const reserveSoc = Number(document.getElementById('v2hReserveSoc').value);
+  const solarKw = Number(document.getElementById('v2hSolarKw').value);
+  const humidity = Number(document.getElementById('v2hHumidity').value);
+  const incentiveRate = Number(document.getElementById('v2gIncentiveRate').value);
+  const v2hAllowed = document.getElementById('v2hAllowed').checked;
+  const v2gAllowed = document.getElementById('v2gAllowed').checked;
+
+  try {
+    const res = await apiCall('/v2h-v2g-dispatcher', 'POST', {
+      home_battery_capacity_kwh: homeCap,
+      home_battery_soc: homeSoc,
+      ev_battery_capacity_kwh: evCap,
+      ev_battery_soc: evSoc,
+      ev_mobility_reserve_soc: reserveSoc,
+      v2h_user_allowed: v2hAllowed,
+      v2g_grid_export_allowed: v2gAllowed,
+      v2g_feedin_incentive_rate: incentiveRate,
+      solar_capacity_kw: solarKw,
+      relative_humidity: humidity,
+      day_of_week: Number(document.getElementById('fcDay').value),
+      month: Number(document.getElementById('fcMonth').value),
+      temperature: Number(document.getElementById('fcTemp').value)
+    });
+
+    document.getElementById('v2hSelfCons').textContent = `${res.summary.pv_self_consumption_percent}%`;
+    document.getElementById('v2gIncentiveEarned').textContent = `₹${res.summary.ev_owner_incentive_earned_inr}`;
+    document.getElementById('v2hResultsArea').style.display = 'block';
+
+    const dispatch = res.hourly_dispatch;
+    renderMultiSeriesSVG(document.getElementById('svgV2hGraph'), [
+      { name: 'Load Demand (kW)', values: dispatch.map(d => d.demand_kwh), color: '#38bdf8' },
+      { name: 'Solar PV (kW)', values: dispatch.map(d => d.solar_kwh), color: '#f59e0b' },
+      { name: 'EV SOC (%)', values: dispatch.map(d => d.ev_battery_soc / 20.0), color: '#10b981' }, // scaled
+      { name: 'V2H Discharge (kW)', values: dispatch.map(d => d.v2h_discharge_kw), color: '#06b6d4' },
+      { name: 'V2G Peak Grid Feed (kW)', values: dispatch.map(d => d.v2g_feedin_kw), color: '#a855f7' }
+    ], 'Power (kW) / Scaled SOC');
+  } catch (err) {
+    alert('V2H Dispatcher Error: ' + err.message);
+  }
+}
+
+// 2. Mid-Month 15-Day Budget Sentinel
+async function runMidMonthBudgetOptimizer() {
+  const budgetLimit = Number(document.getElementById('mbBudgetLimit').value);
+  const unitRate = Number(document.getElementById('mbUnitRate').value);
+  const fixedCharge = Number(document.getElementById('mbFixedCharge').value);
+  const days1to15 = Number(document.getElementById('mbDays1to15Kwh').value);
+
+  const acHours = Number(document.getElementById('mbAcHours').value);
+  const washHours = Number(document.getElementById('mbWashHours').value);
+  const kitchenHours = Number(document.getElementById('mbKitchenHours').value);
+  const fridgeHours = Number(document.getElementById('mbFridgeHours').value);
+
+  try {
+    const res = await apiCall('/mid-month-budget-optimizer', 'POST', {
+      monthly_budget_limit_inr: budgetLimit,
+      electricity_cost_per_unit_inr: unitRate,
+      fixed_charges_inr: fixedCharge,
+      tax_percent: 9.0,
+      days_elapsed: 15,
+      actual_days_1_to_15_kwh: days1to15,
+      appliance_hours: {
+        "Air Conditioner": acHours,
+        "Washing Machine": washHours,
+        "Kitchen Appliances": kitchenHours,
+        "Refrigerator": fridgeHours
+      },
+      appliance_power_watts: {
+        "Air Conditioner": 1500.0,
+        "Washing Machine": 1000.0,
+        "Kitchen Appliances": 800.0,
+        "Refrigerator": 150.0
+      }
+    });
+
+    document.getElementById('mbBill1to15').textContent = `₹${res.first_15_days.actual_bill_inr}`;
+    document.getElementById('mbKwh1to15').textContent = `${res.first_15_days.energy_consumed_kwh} kWh logged`;
+    document.getElementById('mbUnoptTotal').textContent = `₹${res.total_unoptimized_monthly_bill_inr}`;
+    document.getElementById('mbOptTotal').textContent = `₹${res.final_optimized_monthly_bill_inr}`;
+    document.getElementById('mbSavings').textContent = `₹${res.total_savings_inr}`;
+    document.getElementById('budgetResultsArea').style.display = 'block';
+
+    const cardsBox = document.getElementById('greedyApplianceCards');
+    if (!res.greedy_appliance_adjustments.length) {
+      cardsBox.innerHTML = `<div class="stat-card" style="border-color:#10b981;">✅ Usage already on track! No trimming required to meet ₹${budgetLimit}.</div>`;
+    } else {
+      cardsBox.innerHTML = res.greedy_appliance_adjustments.map(item => `
+        <div class="stat-card">
+          <strong style="color:var(--accent-blue);">${item.appliance}</strong>
+          <p style="font-size: 13px; margin: 4px 0;">Trim: <strong style="color:var(--accent-amber);">${item.minutes_reduction_per_day} min / day</strong></p>
+          <p style="font-size: 12px; color: var(--text-muted);">Adjusted daily: ${item.optimized_daily_hours} hrs (was ${item.original_daily_hours} hrs)</p>
+          <p style="font-size: 12px; color: var(--accent-green);">Saves ₹${item.fifteen_day_savings_inr} in 15 days</p>
+        </div>
+      `).join('');
+    }
+  } catch (err) {
+    alert('Budget Optimizer Error: ' + err.message);
+  }
+}
+
+// 3. Harris Hawks Optimization (HHO) Lab
+async function runHHOLab() {
+  const hawks = Number(document.getElementById('hhoHawks').value);
+  const iterations = Number(document.getElementById('hhoIterations').value);
+
+  try {
+    const res = await apiCall('/hho-optimization-lab', 'POST', {
+      num_hawks: hawks,
+      max_iterations: iterations
+    });
+
+    document.getElementById('hhoResultsArea').style.display = 'block';
+
+    // Benchmark Table
+    const tableBody = document.getElementById('hhoBenchmarkTable');
+    tableBody.innerHTML = res.benchmark_comparison.map((b, i) => `
+      <tr style="border-bottom:1px solid var(--border-color); ${i===2 ? 'background:rgba(16,185,129,0.1); font-weight:bold;' : ''}">
+        <td style="padding:10px 14px;">${b.model}</td>
+        <td style="padding:10px 14px;">${b.optimization}</td>
+        <td style="padding:10px 14px; color:${i===2?'var(--accent-green)':'inherit'};">${b.rmse_wh}</td>
+        <td style="padding:10px 14px;">${b.mae_wh}</td>
+        <td style="padding:10px 14px; color:${i===2?'var(--accent-green)':'inherit'};">${b.mape_percent}%</td>
+        <td style="padding:10px 14px; color:${i===2?'var(--accent-green)':'inherit'};">${b.r2_score}</td>
+      </tr>
+    `).join('');
+
+    // Convergence Graph
+    const traj = res.convergence_trajectory;
+    renderMultiSeriesSVG(document.getElementById('svgHhoGraph'), [
+      { name: 'HHO Convergence (Wh)', values: traj.map(t => t.hho_best_rmse_wh), color: '#10b981' },
+      { name: 'PSO Convergence (Wh)', values: traj.map(t => t.pso_best_rmse_wh), color: '#f59e0b' },
+      { name: 'Escaping Energy E*100', values: traj.map(t => t.escaping_energy_E * 150), color: '#38bdf8', dash: true }
+    ], 'RMSE Error (Wh)');
+  } catch (err) {
+    alert('HHO Lab Error: ' + err.message);
+  }
+}
+
+// 4. Multi-Horizon Forecasting & 1% Error Cost Meter
+async function runMultiHorizonForecast() {
+  const horizon = document.getElementById('mhHorizonType').value;
+  const mw = Number(document.getElementById('mhUtilityMw').value);
+  const errorPct = Number(document.getElementById('mhErrorPct').value);
+
+  try {
+    const res = await apiCall('/multi-horizon-forecasting', 'POST', {
+      horizon_type: horizon,
+      utility_scale_mw: mw,
+      forecasting_error_percent: errorPct,
+      day_of_week: Number(document.getElementById('fcDay').value),
+      month: Number(document.getElementById('fcMonth').value),
+      temperature: Number(document.getElementById('fcTemp').value)
+    });
+
+    const eco = res.economic_impact_analysis;
+    document.getElementById('mhRiskInr').textContent = `₹${(eco.financial_risk_inr / 10000000.0).toFixed(2)} Cr`;
+    document.getElementById('mhRiskUsd').textContent = `$${(eco.financial_risk_usd / 1000000.0).toFixed(2)} Million USD`;
+    document.getElementById('mhPer1PctCost').textContent = `₹${(eco.cost_per_1_percent_error_inr / 10000000.0).toFixed(2)} Cr / %`;
+    document.getElementById('mhReservePenalty').textContent = `₹${(eco.avoidable_spinning_reserve_penalty_inr / 10000000.0).toFixed(2)} Cr`;
+    document.getElementById('mhChartTitle').textContent = `${res.horizon} with Statistical Error Bounds:`;
+    document.getElementById('multihorizonResultsArea').style.display = 'block';
+
+    const ts = res.time_series;
+    renderMultiSeriesSVG(document.getElementById('svgMhGraph'), [
+      { name: 'Forecasted Load (MWh)', values: ts.map(t => t.forecasted_mwh), color: '#38bdf8' },
+      { name: 'Upper Bound (+95%)', values: ts.map(t => t.confidence_upper_mwh), color: '#f59e0b', dash: true },
+      { name: 'Lower Bound (-95%)', values: ts.map(t => t.confidence_lower_mwh), color: '#10b981', dash: true }
+    ], 'Load (MWh)');
+  } catch (err) {
+    alert('Multi-Horizon Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// 2. MULTI-APPLIANCE FLEET SCHEDULER
+// ==========================================
+async function runFleetOptimizer() {
+  const sanctioned = Number(document.getElementById('fleetSanctioned').value);
+  const rateOff = Number(document.getElementById('fleetRateOff').value);
+  const ratePeak = Number(document.getElementById('fleetRatePeak').value);
+
+  const payload = {
+    appliances: [
+      { name: "EV Smart Charger", power_watts: 3300, duration_hours: 3, earliest_start: 0, latest_finish: 8, priority: 1 },
+      { name: "Electric Geyser", power_watts: 2000, duration_hours: 1, earliest_start: 5, latest_finish: 9, priority: 1 },
+      { name: "Washing Machine", power_watts: 1200, duration_hours: 2, earliest_start: 9, latest_finish: 17, priority: 2 },
+      { name: "Heat Pump / AC", power_watts: 1500, duration_hours: 3, earliest_start: 12, latest_finish: 18, priority: 2 }
+    ],
+    sanctioned_load_kw: sanctioned,
+    electricity_rate_offpeak: rateOff,
+    electricity_rate_normal: 6.5,
+    electricity_rate_peak: ratePeak,
+    day_of_week: Number(document.getElementById('fcDay').value),
+    month: Number(document.getElementById('fcMonth').value),
+    temperature: Number(document.getElementById('fcTemp').value)
+  };
+
+  try {
+    const res = await apiCall('/multi-schedule', 'POST', payload);
+    document.getElementById('fleetMaxPeak').textContent = `${res.summary.maximum_aggregate_peak_kw} kW`;
+    document.getElementById('fleetBreakerStatus').textContent = res.summary.grid_connection_safe ? '✅ Breaker Protected' : '⚠️ Limit Exceeded';
+    document.getElementById('fleetPeakShaved').textContent = `${res.summary.peak_shaved_vs_uncoordinated_kw} kW`;
+    document.getElementById('fleetTotalCost').textContent = `₹${res.summary.total_fleet_cost_inr}`;
+    document.getElementById('fleetResultsArea').style.display = 'block';
+
+    // Render Gantt
+    const ganttBox = document.getElementById('fleetGantt');
+    ganttBox.innerHTML = res.scheduled_fleet.map(item => {
+      const leftPct = (item.scheduled_start / 24) * 100;
+      const widthPct = (item.duration_hours / 24) * 100;
+      return `
+        <div class="gantt-row">
+          <div class="gantt-label">${item.name} (${item.power_watts}W)</div>
+          <div class="gantt-timeline">
+            <div class="gantt-bar" style="left: ${leftPct}%; width: ${widthPct}%;">
+              ${item.scheduled_start}:00 - ${item.scheduled_end}:00 (₹${item.scheduled_cost_inr})
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Render comparison chart
+    const baselineSeries = res.hourly_comparison.map(d => d.baseline_kwh);
+    const scheduledSeries = res.hourly_comparison.map(d => d.aggregate_scheduled_kwh);
+    const limitSeries = res.hourly_comparison.map(d => d.sanctioned_limit_kw);
+
+    renderMultiSeriesSVG(document.getElementById('svgFleetGraph'), [
+      { name: 'Baseline Home Load', values: baselineSeries, color: '#64748b' },
+      { name: 'Coordinated Fleet Total', values: scheduledSeries, color: '#38bdf8' },
+      { name: 'Sanctioned Limit', values: limitSeries, color: '#f43f5e', dash: true }
+    ], 'Power (kW)');
+  } catch (err) {
+    alert('Fleet Optimizer Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// 3. SOLAR & BESS DIGITAL TWIN
+// ==========================================
+async function simulateSolarMicrogrid() {
+  const solarKw = Number(document.getElementById('solarKw').value);
+  const batteryKwh = Number(document.getElementById('batteryKwh').value);
+  const cloud = Number(document.getElementById('cloudCover').value);
+  const exportRate = Number(document.getElementById('exportTariff').value);
+
+  try {
+    const res = await apiCall('/solar-battery-twin', 'POST', {
+      solar_capacity_kw: solarKw,
+      battery_capacity_kwh: batteryKwh,
+      battery_initial_soc: 40.0,
+      cloud_cover_percent: cloud,
+      grid_export_tariff: exportRate,
+      grid_import_tariff: 7.0,
+      day_of_week: 2,
+      month: 1,
+      temperature: 28.0
+    });
+
+    document.getElementById('solarSelfSuff').textContent = `${res.self_sufficiency_percent}%`;
+    document.getElementById('solarProduced').textContent = `${res.total_solar_generated_kwh} kWh`;
+    document.getElementById('solarSavings').textContent = `₹${res.financials.daily_savings_inr}/day`;
+    document.getElementById('solarAnnualSavings').textContent = `₹${res.financials.annual_projected_savings_inr}/year`;
+    document.getElementById('solarExport').textContent = `₹${(res.total_grid_exported_kwh * exportRate).toFixed(2)}`;
+    document.getElementById('solarStats').style.display = 'grid';
+
+    // Chart
+    const hours = res.hourly_dynamics;
+    renderMultiSeriesSVG(document.getElementById('svgSolarGraph'), [
+      { name: 'Solar PV (kW)', values: hours.map(h => h.solar_generation_kw), color: '#f59e0b' },
+      { name: 'Home Demand (kW)', values: hours.map(h => h.home_demand_kwh), color: '#38bdf8' },
+      { name: 'Battery SOC (%)', values: hours.map(h => h.battery_soc_percent / 20), color: '#10b981' } // scaled for view
+    ], 'Power (kW) / SOC');
+
+    startFlowAnimation(solarKw, batteryKwh);
+  } catch (err) {
+    alert('Solar Twin Error: ' + err.message);
+  }
+}
+
+// Cyber-Physical Live Flow Animation Canvas
+let animFrame;
+function startFlowAnimation(solarKw = 4, batteryKwh = 10) {
+  const canvas = document.getElementById('flowCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 850;
+  canvas.height = 240;
+
+  cancelAnimationFrame(animFrame);
+  let offset = 0;
+
+  function drawNode(x, y, icon, label, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, 26, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = color;
+    ctx.stroke();
+
+    ctx.font = '18px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(icon, x, y);
+
+    ctx.font = '11px sans-serif';
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillText(label, x, y + 38);
+  }
+
+  function drawWireWithParticles(x1, y1, x2, y2, color) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Moving particles
+    const dist = Math.hypot(x2 - x1, y2 - y1);
+    const count = 4;
+    for (let i = 0; i < count; i++) {
+      const progress = ((offset + i * (dist / count)) % dist) / dist;
+      const px = x1 + (x2 - x1) * progress;
+      const py = y1 + (y2 - y1) * progress;
+
+      ctx.beginPath();
+      ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    offset += 1.2;
+
+    const midX = canvas.width / 2;
+    const midY = 120;
+
+    // Nodes: Central Home
+    const homeX = midX, homeY = midY;
+    const solarX = midX - 160, solarY = 60;
+    const battX = midX - 160, battY = 180;
+    const gridX = midX + 160, gridY = 60;
+    const evX = midX + 160, evY = 180;
+
+    // Wires
+    drawWireWithParticles(solarX, solarY, homeX, homeY, '#f59e0b');
+    drawWireWithParticles(battX, battY, homeX, homeY, '#10b981');
+    drawWireWithParticles(gridX, gridY, homeX, homeY, '#38bdf8');
+    drawWireWithParticles(homeX, homeY, evX, evY, '#06b6d4');
+
+    // Draw Nodes
+    drawNode(solarX, solarY, '☀️', `${solarKw} kW Solar`, '#f59e0b');
+    drawNode(battX, battY, '🔋', `${batteryKwh} kWh BESS`, '#10b981');
+    drawNode(homeX, homeY, '🏠', 'Smart Home', '#38bdf8');
+    drawNode(gridX, gridY, '⚡', 'Utility Grid', '#38bdf8');
+    drawNode(evX, evY, '🚗', 'EV Charging', '#06b6d4');
+
+    animFrame = requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+// ==========================================
+// 4. GRID CARBON & FREQUENCY
+// ==========================================
+async function loadCarbonProfile() {
+  try {
+    const data = await apiCall('/peak-hours', 'POST', {
+      hour: 12, day_of_week: 2, month: 1, temperature: 25.0
+    });
+
+    const currentH = new Date().getHours();
+    const curr = data.carbon_profile[currentH] || data.carbon_profile[12];
+    document.getElementById('gridFreqVal').textContent = `${curr.grid_frequency_hz} Hz`;
+    document.getElementById('gridCarbonVal').textContent = `${curr.carbon_intensity_g_per_kwh} gCO₂/kWh`;
+
+    const svg = document.getElementById('svgCarbonGraph');
+    renderMultiSeriesSVG(svg, [
+      { name: 'Carbon Intensity (gCO2/kWh)', values: data.carbon_profile.map(c => c.carbon_intensity_g_per_kwh / 10), color: '#f59e0b' },
+      { name: 'Grid Frequency (Hz)', values: data.carbon_profile.map(c => (c.grid_frequency_hz - 49) * 10), color: '#10b981' }
+    ], 'Carbon / Frequency Index');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// ==========================================
+// 5. ANOMALY & VAMPIRE LOAD SENTINEL
+// ==========================================
+async function runAnomalyDiagnostics() {
+  const inject = document.getElementById('anomalyInjectType').value;
+  try {
+    const res = await apiCall('/anomaly-detector', 'POST', {
+      day_of_week: 2,
+      month: 1,
+      temperature: 25.0,
+      inject_anomaly_type: inject === 'none' ? null : inject
+    });
+
+    document.getElementById('anomalyStatusText').textContent = res.overall_status;
+    document.getElementById('anomalyCountSub').textContent = `${res.anomalies_found} Anomalies Flagged`;
+    document.getElementById('anomalyWastedKwh').textContent = `${res.total_wasted_energy_kwh} kWh`;
+    document.getElementById('anomalyAnnualCost').textContent = `₹${(res.total_wasted_energy_kwh * 7.0 * 365).toFixed(0)}`;
+    document.getElementById('anomalyDiagnosticsArea').style.display = 'block';
+
+    const list = document.getElementById('anomalyReportList');
+    if (res.diagnostics.length === 0) {
+      list.innerHTML = `<div class="stat-card" style="border-color: #10b981;"><strong style="color:#10b981;">✅ Pristine Health:</strong> No standby leaks or abnormal surges detected.</div>`;
+    } else {
+      list.innerHTML = res.diagnostics.map(d => `
+        <div class="stat-card" style="margin-bottom: 8px;">
+          <div style="display:flex; justify-content:space-between;">
+            <strong>${d.type}</strong>
+            <span class="badge-alert ${d.severity === 'Critical' ? 'badge-critical' : 'badge-high'}">${d.severity}</span>
+          </div>
+          <p style="font-size: 13px; margin: 4px 0;"><strong>Window:</strong> ${d.time_window} ${d.excess_power_draw_kw ? `· Leak: +${d.excess_power_draw_kw} kW` : ''}</p>
+          <p style="font-size: 12px; color: var(--text-muted);">${d.root_cause}</p>
+        </div>
+      `).join('');
+    }
+
+    // Chart
+    renderMultiSeriesSVG(document.getElementById('svgAnomalyGraph'), [
+      { name: 'Actual Telemetry', values: res.telemetry_comparison.map(t => t.actual_telemetry_kwh), color: '#f43f5e' },
+      { name: 'Model Baseline', values: res.telemetry_comparison.map(t => t.expected_baseline_kwh), color: '#38bdf8' }
+    ], 'Power (kWh)');
+  } catch (err) {
+    alert('Anomaly Detector Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// 6. VPP BLACKOUT RESILIENCE
+// ==========================================
+async function runVppStressSim() {
+  const scenario = document.getElementById('vppScenario').value;
+  const delta = Number(document.getElementById('vppHeatDelta').value);
+  const batt = Number(document.getElementById('vppBattery').value);
+
+  try {
+    const res = await apiCall('/grid-stress-sim', 'POST', {
+      scenario,
+      heatwave_temp_delta: delta,
+      enable_demand_response: true,
+      battery_capacity_kwh: batt,
+      day_of_week: 2,
+      month: 5,
+      base_temperature: 35.0
+    });
+
+    document.getElementById('vppBlackoutStatus').textContent = res.vpp_blackout_prevented ? '✅ Blackout Averted!' : 'Safe Operations';
+    document.getElementById('vppBlackoutSub').textContent = `Trip Limit: ${res.substation_trip_threshold_kw} kW`;
+    document.getElementById('vppNegawatts').textContent = `${res.total_negawatts_generated_kwh} kWh`;
+    document.getElementById('vppReward').textContent = `₹${res.vpp_financial_incentive_earned_inr}`;
+    document.getElementById('vppAutonomy').textContent = `${res.microgrid_islanded_autonomy_hours} hrs`;
+    document.getElementById('vppResultsArea').style.display = 'block';
+
+    const curve = res.hourly_stress_curve;
+    renderMultiSeriesSVG(document.getElementById('svgVppGraph'), [
+      { name: 'Heatwave Shock Demand', values: curve.map(c => c.stressed_demand_kwh), color: '#f43f5e' },
+      { name: 'AI Negawatt Mitigated', values: curve.map(c => c.ai_resilient_demand_kwh), color: '#10b981' },
+      { name: 'Substation Breaker Limit', values: curve.map(c => c.substation_limit_kw), color: '#f59e0b', dash: true }
+    ], 'Demand (kW)');
+  } catch (err) {
+    alert('VPP Simulation Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// 7. ENERGY HEALTH AUDIT
+// ==========================================
+async function loadEnergyAudit() {
+  try {
+    const res = await apiCall('/energy-audit?day_of_week=2&month=1&temperature=25.0&sanctioned_load_kw=5.0');
+    document.getElementById('auditGradeBadge').textContent = res.grade;
+    document.getElementById('auditBadgeTitle').textContent = res.badge;
+    document.getElementById('auditLF').textContent = res.metrics.load_factor;
+    document.getElementById('auditPAR').textContent = res.metrics.peak_to_average_ratio;
+    document.getElementById('auditBill').textContent = `₹${res.metrics.estimated_monthly_bill_inr}`;
+    document.getElementById('auditCarbon').textContent = `${res.metrics.estimated_monthly_carbon_kg} kg`;
+
+    document.getElementById('auditRecommendations').innerHTML = res.recommendations.map(r => `
+      <div style="padding: 6px 0; border-bottom: 1px solid var(--border-color);">💡 ${r}</div>
+    `).join('');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// ==========================================
+// 8. SATHI COPILOT
+// ==========================================
+async function sendCopilotQuery(customText = null) {
+  const input = document.getElementById('copilotInput');
+  const text = customText || input.value.trim();
+  if (!text) return;
+
+  const chat = document.getElementById('copilotChat');
+  chat.innerHTML += `<div class="chat-msg chat-user"><strong>You:</strong> ${escapeHTML(text)}</div>`;
+  input.value = '';
+  chat.scrollTop = chat.scrollHeight;
+
+  try {
+    const res = await apiCall('/copilot', 'POST', { prompt: text });
+    chat.innerHTML += `<div class="chat-msg chat-agent"><strong>⚡ Sathi AI:</strong> ${res.voice_response}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+
+    // Speak aloud using Web Speech API
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(res.voice_response);
+      utterance.rate = 1.05;
+      window.speechSynthesis.speak(utterance);
+    }
+  } catch (err) {
+    chat.innerHTML += `<div class="chat-msg chat-agent" style="color:var(--accent-rose);">Error: ${err.message}</div>`;
+  }
+}
+
+function toggleVoiceInput() {
+  const micBtn = document.getElementById('micBtn');
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert('Speech recognition is not supported in this browser. Please type your query.');
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.start();
+
+  micBtn.textContent = '🔴 Listening...';
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById('copilotInput').value = transcript;
+    micBtn.textContent = '🎙️ Speak Command';
+    sendCopilotQuery(transcript);
+  };
+  recognition.onerror = () => {
+    micBtn.textContent = '🎙️ Speak Command';
+  };
+}
+
+// ==========================================
+// 9. TIME MACHINE
+// ==========================================
+async function runGridTimeMachine() {
+  const app = document.getElementById('tmAppliance').value;
+  const power = Number(document.getElementById('tmPower').value);
+  const dur = Number(document.getElementById('tmDuration').value);
+  const orig = Number(document.getElementById('tmOriginal').value);
+  const nStart = Number(document.getElementById('tmNew').value);
+
+  try {
+    const res = await apiCall('/time-machine', 'POST', {
+      appliance: app,
+      power_watts: power,
+      duration_hours: dur,
+      original_start_hour: orig,
+      new_start_hour: nStart,
+      day_of_week: 2,
+      month: 1,
+      temperature: 25.0
+    });
+
+    document.getElementById('tmPeakBefore').textContent = `${res.before_peak_kwh} kWh`;
+    document.getElementById('tmPeakAfter').textContent = `${res.after_peak_kwh} kWh`;
+    document.getElementById('tmPeakReduction').textContent = `${res.peak_reduction_percent}%`;
+    document.getElementById('tmApplianceEnergy').textContent = `${res.appliance_energy_kwh} kWh`;
+    document.getElementById('tmStats').style.display = 'grid';
+
+    renderMultiSeriesSVG(document.getElementById('svgTimeMachineGraph'), [
+      { name: 'Original Timing', values: res.hourly_comparison.map(c => c.before_kwh), color: '#f43f5e' },
+      { name: 'Optimized Timing', values: res.hourly_comparison.map(c => c.after_kwh), color: '#10b981' }
+    ], 'Demand (kWh)');
+  } catch (err) {
+    alert('Time Machine Error: ' + err.message);
+  }
+}
+
+// ==========================================
+// SHARED MULTI-SERIES SVG CHART ENGINE
+// ==========================================
+function renderMultiSeriesSVG(svg, seriesList, yAxisLabel) {
+  if (!svg) return;
+  const W = 900, H = 280, left = 58, right = 30, top = 28, bottom = 45;
+  const w = W - left - right;
+  const h = H - top - bottom;
+
+  let allVals = [];
+  seriesList.forEach(s => allVals.push(...s.values));
+  const minVal = Math.min(0, ...allVals);
+  const maxVal = Math.max(1, ...allVals);
+  const span = maxVal - minVal || 1;
+
+  const getX = i => left + (i / 23) * w;
+  const getY = v => top + (maxVal - v) * (h / span);
+
+  let svgHtml = `
+    <defs>
+      <filter id="svgNeonGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2.5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  `;
+
+  // Grid Lines & Y ticks
+  for (let i = 0; i <= 4; i++) {
+    const val = minVal + (span * i / 4);
+    const yPos = getY(val);
+    svgHtml += `<line x1="${left}" y1="${yPos}" x2="${W - right}" y2="${yPos}" stroke="rgba(56,189,248,0.12)" stroke-dasharray="2,4"/>`;
+    svgHtml += `<text x="${left - 10}" y="${yPos + 4}" text-anchor="end" font-size="11" font-weight="600" fill="#94a3b8">${val.toFixed(1)}</text>`;
+  }
+
+  // X ticks & vertical guide markers
+  for (let hIndex = 0; hIndex < 24; hIndex += 3) {
+    const xPos = getX(hIndex);
+    svgHtml += `<line x1="${xPos}" y1="${top}" x2="${xPos}" y2="${H - bottom}" stroke="rgba(255,255,255,0.04)"/>`;
+    svgHtml += `<text x="${xPos}" y="${H - 16}" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">${hIndex}:00</text>`;
+  }
+
+  // Y-axis label
+  svgHtml += `<text x="18" y="${H / 2}" transform="rotate(-90 18 ${H / 2})" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">${yAxisLabel}</text>`;
+
+  // Draw Series Area Fills and Polylines
+  seriesList.forEach((series, sIdx) => {
+    const pts = series.values.map((v, i) => `${getX(i)},${getY(v)}`).join(' ');
+    const strokeDash = series.dash ? 'stroke-dasharray="6,4"' : '';
+
+    // Primary series area fill
+    if (!series.dash && sIdx === 0 && series.values.length > 0) {
+      const baseY = getY(minVal);
+      const areaPts = `${getX(0)},${baseY} ` + pts + ` ${getX(series.values.length - 1)},${baseY}`;
+      svgHtml += `<polygon points="${areaPts}" fill="${series.color}" opacity="0.14"/>`;
+    }
+
+    // Glowing polyline
+    svgHtml += `<polyline points="${pts}" fill="none" stroke="${series.color}" stroke-width="2.5" ${strokeDash} filter="url(#svgNeonGlow)"/>`;
+
+    // Data points
+    if (!series.dash) {
+      series.values.forEach((v, i) => {
+        svgHtml += `
+          <circle cx="${getX(i)}" cy="${getY(v)}" r="4" fill="#ffffff" stroke="${series.color}" stroke-width="2.2">
+            <title>${series.name} [${i}:00]: ${v.toFixed(2)}</title>
+          </circle>
+        `;
+      });
+    }
+  });
+
+  // Legend at top-right with glass pill backdrop
+  let legendX = W - right - 15;
+  seriesList.slice().reverse().forEach(series => {
+    svgHtml += `
+      <g transform="translate(${legendX - 120}, ${top - 14})">
+        <rect width="115" height="20" rx="10" fill="rgba(15,23,42,0.75)" stroke="rgba(56,189,248,0.2)" stroke-width="1"/>
+        <circle cx="12" cy="10" r="4" fill="${series.color}"/>
+        <text x="22" y="14" font-size="10.5" font-weight="600" fill="#e2e8f0">${series.name.substring(0, 16)}</text>
+      </g>
+    `;
+    legendX -= 125;
+  });
+
+  svg.innerHTML = svgHtml;
+}
+
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[ch]);
+}
+
+// ==========================================
+// 10. SCADA 2x2 FACTORIAL & PLC STUDIO (IEEE iEECON 2025)
+// ==========================================
+async function runScadaFactorial() {
+  const chillerState = Number(document.getElementById('scadaChillerState').value);
+  const acState = Number(document.getElementById('scadaAcState').value);
+  const plcState = Number(document.getElementById('scadaPlcState').value);
+  const onPeakRate = Number(document.getElementById('scadaOnPeakRate').value);
+  const offPeakRate = Number(document.getElementById('scadaOffPeakRate').value);
+
+  try {
+    const res = await apiCall('/scada-factorial-studio', 'POST', {
+      chiller_state: chillerState,
+      ac_state: acState,
+      plc_operating_state: plcState,
+      onpeak_rate_per_kwh: onPeakRate,
+      offpeak_rate_per_kwh: offPeakRate
+    });
+
+    document.getElementById('scadaPeakDemand').textContent = `${res.current_prediction.predicted_peak_demand_kwh} kWh`;
+    document.getElementById('scadaOnPeakCost').textContent = `₹${res.current_prediction.cost_onpeak}`;
+    document.getElementById('scadaOffPeakCost').textContent = `₹${res.current_prediction.cost_offpeak}`;
+    document.getElementById('scadaTouSavings').textContent = `₹${res.current_prediction.potential_tou_saving}`;
+
+    // Update PLC hardware relays
+    const relays = res.plc_controller_status.hardware_relays;
+    const r1 = relays.relay_1_chiller_contactor;
+    const r2 = relays.relay_2_ahu_inverter;
+    const r3 = relays.relay_3_wall_ac_group;
+    const r4 = relays.relay_4_chilled_water_pump;
+
+    document.getElementById('r1Status').textContent = r1;
+    document.getElementById('r1Led').className = 'relay-led ' + (r1.includes('CLOSED') ? 'led-on' : 'led-off');
+
+    document.getElementById('r2Status').textContent = r2;
+    document.getElementById('r2Led').className = 'relay-led ' + (r2.includes('ACTIVE') ? 'led-on' : 'led-off');
+
+    document.getElementById('r3Status').textContent = r3;
+    document.getElementById('r3Led').className = 'relay-led ' + (r3.includes('ENERGIZED') ? 'led-on' : 'led-off');
+
+    document.getElementById('r4Status').textContent = r4;
+    document.getElementById('r4Led').className = 'relay-led ' + (r4.includes('CIRCULATING') ? 'led-on' : 'led-amber');
+
+    document.getElementById('plcActionBox').innerHTML = `
+      <strong>PLC Condition State ${res.plc_controller_status.active_state_code}: ${escapeHTML(res.plc_controller_status.state_title)}</strong><br>
+      • Automated Control Command: ${escapeHTML(res.plc_controller_status.automated_action)}<br>
+      • Thermal Limit Caps: Chiller ${res.plc_controller_status.chiller_thermal_limit_percent}% | AC Group ${res.plc_controller_status.ac_thermal_limit_percent}%
+    `;
+
+    // Render Factorial Runs Table
+    const runBody = document.getElementById('scadaRunRows');
+    runBody.innerHTML = res.experimental_runs.map(r => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <td style="padding:7px 10px; font-weight:700;">Run ${r.run}</td>
+        <td style="padding:7px 10px;">${r.type1_chiller}</td>
+        <td style="padding:7px 10px;">${r.type2_ac}</td>
+        <td style="padding:7px 10px; color:var(--accent-blue); font-weight:700;">${r.peak_demand_kwh} kWh</td>
+        <td style="padding:7px 10px;">₹${r.cost_onpeak}</td>
+      </tr>
+    `).join('');
+
+    // Render Benchmarks Table
+    const bBody = document.getElementById('scadaBenchmarkRows');
+    bBody.innerHTML = res.state_of_art_benchmark.map(b => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05); ${b.scada ? 'background:rgba(56,189,248,0.1); font-weight:700;' : ''}">
+        <td style="padding:6px 8px;">${b.study}</td>
+        <td style="padding:6px 8px;">${b.method}</td>
+        <td style="padding:6px 8px; color:var(--accent-green);">${b.accuracy}</td>
+        <td style="padding:6px 8px;">${b.peak_reduction}</td>
+        <td style="padding:6px 8px;">${b.scada ? '✅ PLC Yes' : '❌ No'}</td>
+      </tr>
+    `).join('');
+
+    // Draw 3D Isometric Response Surface SVG
+    renderScadaIsometricSurface(res.response_surface, chillerState, acState, res.current_prediction.predicted_peak_demand_kwh);
+
+  } catch (err) {
+    console.error('SCADA Factorial error:', err);
+  }
+}
+
+// 3D Isometric Wireframe / Contour Surface Renderer
+function renderScadaIsometricSurface(surfData, curX, curY, curZ) {
+  const svg = document.getElementById('svgScadaSurface');
+  if (!svg) return;
+
+  const W = 500, H = 260;
+  const originX = W / 2, originY = 190;
+  // Isometric projection angles: 30 degrees
+  const cos30 = 0.866, sin30 = 0.5;
+  const scaleAxis = 85;
+  const scaleZ = 0.35;
+
+  const toIso = (x, y, z) => {
+    const isoX = originX + (x - y) * cos30 * scaleAxis;
+    const isoY = originY + (x + y) * sin30 * (scaleAxis * 0.55) - (z * scaleZ);
+    return { x: isoX, y: isoY };
+  };
+
+  const xs = surfData.x_axis_chiller;
+  const ys = surfData.y_axis_ac;
+  const zMatrix = surfData.z_peak_demand_matrix;
+
+  let svgHtml = '';
+
+  // Background grid surface facets
+  for (let i = 0; i < xs.length - 1; i++) {
+    for (let j = 0; j < ys.length - 1; j++) {
+      const p1 = toIso(xs[i], ys[j], zMatrix[i][j]);
+      const p2 = toIso(xs[i+1], ys[j], zMatrix[i+1][j]);
+      const p3 = toIso(xs[i+1], ys[j+1], zMatrix[i+1][j+1]);
+      const p4 = toIso(xs[i], ys[j+1], zMatrix[i][j+1]);
+
+      const avgZ = (zMatrix[i][j] + zMatrix[i+1][j] + zMatrix[i+1][j+1] + zMatrix[i][j+1]) / 4.0;
+      const t = Math.min(1.0, avgZ / 361.0);
+      const fillR = Math.round(16 + t * 220);
+      const fillG = Math.round(185 - t * 140);
+      const fillB = Math.round(248 - t * 180);
+
+      svgHtml += `<polygon points="${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y} ${p4.x},${p4.y}" fill="rgba(${fillR},${fillG},${fillB},0.55)" stroke="#38bdf8" stroke-width="0.8"/>`;
+    }
+  }
+
+  // Draw Axis lines
+  const o = toIso(-1, -1, 0);
+  const xEnd = toIso(1, -1, 0);
+  const yEnd = toIso(-1, 1, 0);
+  const zEnd = toIso(-1, -1, 380);
+
+  svgHtml += `<line x1="${o.x}" y1="${o.y}" x2="${xEnd.x}" y2="${xEnd.y}" stroke="#94a3b8" stroke-width="1.5"/>`;
+  svgHtml += `<text x="${xEnd.x + 8}" y="${xEnd.y + 4}" font-size="11" fill="#bae6fd">Chiller X₁ (+1)</text>`;
+
+  svgHtml += `<line x1="${o.x}" y1="${o.y}" x2="${yEnd.x}" y2="${yEnd.y}" stroke="#94a3b8" stroke-width="1.5"/>`;
+  svgHtml += `<text x="${yEnd.x - 70}" y="${yEnd.y + 4}" font-size="11" fill="#bae6fd">Wall AC X₂ (+1)</text>`;
+
+  svgHtml += `<line x1="${o.x}" y1="${o.y}" x2="${zEnd.x}" y2="${zEnd.y}" stroke="#f59e0b" stroke-dasharray="3,3" stroke-width="1.5"/>`;
+  svgHtml += `<text x="${zEnd.x - 10}" y="${zEnd.y - 6}" font-size="11" fill="#f59e0b">Peak Demand</text>`;
+
+  // Glowing Marker for current selection
+  const curPt = toIso(curX, curY, curZ);
+  svgHtml += `
+    <circle cx="${curPt.x}" cy="${curPt.y}" r="8" fill="#f43f5e" opacity="0.4">
+      <animate attributeName="r" values="6;12;6" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="${curPt.x}" cy="${curPt.y}" r="4" fill="#ffffff" stroke="#f43f5e" stroke-width="2"/>
+    <text x="${curPt.x + 10}" y="${curPt.y - 8}" font-size="12" font-weight="bold" fill="#ffffff">${curZ} kWh</text>
+  `;
+
+  svg.innerHTML = svgHtml;
+}
+
+
+// ==========================================
+// 11. NATURE MO-DQN & PUMA OPTIMIZER (SAPOA)
+// ==========================================
+async function runMODQNPumaScheduler() {
+  const weight = Number(document.getElementById('pumaWeight').value);
+  const resToggle = document.getElementById('pumaResToggle').value === 'true';
+  const thetaAc = Number(document.getElementById('pumaAcTheta').value);
+  const washerHour = Number(document.getElementById('pumaWasherHour').value);
+  const temp = Number(document.getElementById('pumaTemp').value);
+
+  try {
+    const res = await apiCall('/modqn-puma-scheduler', 'POST', {
+      cost_vs_comfort_weight: weight,
+      enable_renewable_sources: resToggle,
+      ac_unhappiness_theta: thetaAc,
+      washing_machine_preferred_hour: washerHour,
+      day_of_week: 2,
+      month: 1,
+      temperature: temp
+    });
+
+    document.getElementById('pumaSchedPar').textContent = res.scheduled_par;
+    document.getElementById('pumaUnschedPar').textContent = res.unscheduled_par;
+    document.getElementById('pumaParReduction').textContent = `${res.par_reduction_percent}% Cut`;
+    document.getElementById('pumaPhaseMode').textContent = res.puma_algorithm_telemetry.active_phase.split(' ')[0] + ' Phase';
+    document.getElementById('pumaWasherResult').textContent = `Shifted from ${res.puma_algorithm_telemetry.washer_preferred_hour}:00 ➔ ${res.puma_algorithm_telemetry.washer_optimal_start_hour}:00 (Δ${res.puma_algorithm_telemetry.washer_delay_hours}h)`;
+
+    // Populate benchmark table
+    const benchmarkData = resToggle ? res.benchmarks.with_res : res.benchmarks.without_res;
+    const pBody = document.getElementById('pumaBenchmarkRows');
+    pBody.innerHTML = benchmarkData.map(b => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05); ${b.algorithm.includes('Proposed') ? 'background:rgba(16,185,129,0.15); font-weight:700;' : ''}">
+        <td style="padding:8px 10px;">${b.algorithm}</td>
+        <td style="padding:8px 10px; color:var(--accent-blue);">${b.par}</td>
+        <td style="padding:8px 10px; color:var(--accent-green); font-weight:700;">${b.par}</td>
+        <td style="padding:8px 10px;">${b.electricity_cost}</td>
+        <td style="padding:8px 10px; color:var(--accent-amber); font-weight:700;">${b.electricity_cost}</td>
+        <td style="padding:8px 10px;">${b.energy_kwh} kWh</td>
+      </tr>
+    `).join('');
+
+    // Draw multi-series SVG Area Chart
+    const svg = document.getElementById('svgPumaGraph');
+    const schedule = res.hourly_schedule;
+    renderMultiSeriesSVG(svg, [
+      { name: 'Unscheduled Baseline', values: schedule.map(s => s.unscheduled_total_kw), color: '#f43f5e', dash: true },
+      { name: 'Proposed MO-DQN Total', values: schedule.map(s => s.scheduled_total_kw), color: '#10b981' },
+      { name: 'AC Modulated (kW)', values: schedule.map(s => s.air_conditioner_kw), color: '#38bdf8' },
+      { name: 'Washing Machine (kW)', values: schedule.map(s => s.washing_machine_kw), color: '#a855f7' },
+      { name: 'Fridge Baseload (kW)', values: schedule.map(s => s.refrigerator_kw), color: '#f59e0b' }
+    ], 'Power (kW)');
+
+  } catch (err) {
+    console.error('MO-DQN Puma error:', err);
+  }
+}
+
+
+// ==========================================
+// 12. EV CHARGING GOVERNANCE & GRID STABILITY (IEEE ICDISS 2025)
+// ==========================================
+async function runEVGovernanceStability() {
+  const strategy = document.getElementById('evgovStrategy').value;
+  const pop = Number(document.getElementById('evgovFleetPop').value);
+  const baseLoad = Number(document.getElementById('evgovBaseLoad').value);
+
+  try {
+    const res = await apiCall('/ev-governance-stability', 'POST', {
+      strategy,
+      ev_population: pop,
+      grid_base_load_kw: baseLoad
+    });
+
+    document.getElementById('evgovPeakLoad').textContent = `${res.peak_load_kw} kW`;
+    document.getElementById('evgovPeakReduction').textContent = `${res.peak_reduction_percent}% Reduction`;
+    document.getElementById('evgovWaitTime').textContent = `${res.queue_performance.avg_wait_min} min`;
+    document.getElementById('evgovSatisfaction').textContent = `${res.queue_performance.user_satisfaction_percent}%`;
+
+    // Populate Stability table
+    const sBody = document.getElementById('evgovStabilityRows');
+    sBody.innerHTML = res.tables.grid_stability_metrics.map(s => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <td style="padding:8px 10px; font-weight:700;">${s.standard}</td>
+        <td style="padding:8px 10px; color:var(--accent-rose);">${s.uncontrolled}</td>
+        <td style="padding:8px 10px;">${s.smart_control}</td>
+        <td style="padding:8px 10px; color:var(--accent-green); font-weight:700;">${s.adaptive_control}</td>
+        <td style="padding:8px 10px; color:var(--accent-blue); font-weight:700;">+${s.improvement_percent}%</td>
+      </tr>
+    `).join('');
+
+    // Populate Renewable Utilization Table
+    const rBody = document.getElementById('evgovRenewableRows');
+    rBody.innerHTML = res.tables.renewable_energy_utilization.map(r => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05); ${r.method.includes('Adaptive') ? 'background:rgba(56,189,248,0.15); font-weight:700;' : ''}">
+        <td style="padding:8px 10px;">${r.method}</td>
+        <td style="padding:8px 10px; color:#f59e0b;">${r.solar_usage_percent}%</td>
+        <td style="padding:8px 10px; color:#38bdf8;">${r.wind_usage_percent}%</td>
+        <td style="padding:8px 10px; color:var(--accent-green);">${r.total_re_percent}%</td>
+      </tr>
+    `).join('');
+
+    // Populate V2G Peak Demand & Incentive Table
+    const vBody = document.getElementById('evgovV2gRows');
+    vBody.innerHTML = res.tables.v2g_peak_demand_contribution.map(v => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05); ${v.scenario.includes('Adaptive') ? 'background:rgba(16,185,129,0.15); font-weight:700;' : ''}">
+        <td style="padding:8px 10px; font-weight:700;">${v.scenario}</td>
+        <td style="padding:8px 10px;">${v.evs_participating.toLocaleString()} EVs</td>
+        <td style="padding:8px 10px; color:var(--accent-blue);">${v.energy_returned_kwh.toLocaleString()} kWh</td>
+        <td style="padding:8px 10px; color:var(--accent-green);">${v.grid_demand_met_percent}%</td>
+        <td style="padding:8px 10px; color:var(--accent-amber); font-weight:700;">₹${v.incentive_per_ev_inr} / EV</td>
+      </tr>
+    `).join('');
+
+  } catch (err) {
+    console.error('EV Governance error:', err);
+  }
+}
+
+
+// ==========================================
+// 13. SMART HOME PV & STORAGE SIZING ARCHITECT (MDPI Energies 2025)
+// ==========================================
+async function runSmartHomeSizing() {
+  const acUnits = Number(document.getElementById('szAcUnits').value);
+  const fridgeUnits = Number(document.getElementById('szFridgeUnits').value);
+  const lights = Number(document.getElementById('szLighting').value);
+  const misc = Number(document.getElementById('szMisc').value);
+  const df = Number(document.getElementById('szDf').value);
+  const sunHours = Number(document.getElementById('szSunHours').value);
+  const tariff = Number(document.getElementById('szTariff').value);
+
+  try {
+    const res = await apiCall('/smart-sizing-architect', 'POST', {
+      ac_units: acUnits,
+      refrigerator_units: fridgeUnits,
+      lighting_fixtures: lights,
+      misc_appliances: misc,
+      diversity_factor: df,
+      refrigerator_operating_factor: 0.42,
+      peak_sun_hours: sunHours,
+      panel_rated_watts: 300.0,
+      electricity_tariff: tariff,
+      discount_rate_percent: 5.0
+    });
+
+    document.getElementById('szConnectedLoad').textContent = `${res.load_dimensioning.total_connected_load_kwh_per_day} kWh`;
+    document.getElementById('szDiversifiedLoad').textContent = `${res.load_dimensioning.diversified_daily_demand_kwh} kWh`;
+    document.getElementById('szBessCapacity').textContent = `${res.storage_dimensioning.recommended_nominal_bess_kwh} kWh`;
+    document.getElementById('szPvCapacity').textContent = `${res.solar_pv_dimensioning.recommended_installed_capacity_kw} kW`;
+    document.getElementById('szPvPanels').textContent = `${res.solar_pv_dimensioning.number_of_panels} Panels (300W each)`;
+
+    document.getElementById('szNetArea').textContent = res.solar_pv_dimensioning.panel_surface_area_m2;
+    document.getElementById('szRoofArea').textContent = res.solar_pv_dimensioning.recommended_rooftop_area_m2;
+    document.getElementById('szDailyGen').textContent = (res.solar_pv_dimensioning.recommended_installed_capacity_kw * sunHours).toFixed(1);
+
+    document.getElementById('szCapex').textContent = res.economic_feasibility.estimated_capex.toLocaleString('en-IN');
+    document.getElementById('szDailySavings').textContent = res.economic_feasibility.daily_net_savings;
+    document.getElementById('szPayback').textContent = res.economic_feasibility.simple_payback_period_years;
+    document.getElementById('szLifetimeBenefit').textContent = Math.round(res.economic_feasibility.twenty_five_year_net_benefit).toLocaleString('en-IN');
+
+  } catch (err) {
+    console.error('Smart Home Sizing error:', err);
+  }
+}
+
+
+// Check Backend Health & Initialize
+async function checkBackendConnection() {
+  const statusEl = document.getElementById('backendStatus');
+  try {
+    const res = await fetch(`${API_BASE}/api/status`);
+    if (res.ok) {
+      if (statusEl) statusEl.textContent = `AI Engine Online (FastAPI + XGBoost 3.2)`;
+      predictSingleHour();
+      load24HourForecast();
+      fetchXAI();
+      startFlowAnimation();
+    } else {
+      throw new Error(`HTTP ${res.status}`);
+    }
+  } catch (err) {
+    if (statusEl) {
+      statusEl.textContent = `❌ Backend Offline (Run: python backend/main.py)`;
+      statusEl.parentElement.style.background = 'rgba(244, 63, 94, 0.2)';
+      statusEl.parentElement.style.borderColor = '#f43f5e';
+      statusEl.parentElement.style.color = '#f43f5e';
+    }
+    console.error('FastAPI Backend connection failed:', err);
+  }
+}
+
+
+// ── AMBIENT SMART GRID CANVAS SIMULATION ──
+(function initGridCanvas() {
+  const canvas = document.getElementById('bgGridCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  const NODE_COUNT = 36;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 2 + 1.2,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function animate(time) {
+    ctx.clearRect(0, 0, width, height);
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    const nodeColor = isDark ? 'rgba(56, 189, 248, ' : 'rgba(2, 132, 199, ';
+    const linkColor = isDark ? 'rgba(56, 189, 248, ' : 'rgba(2, 132, 199, ';
+
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0) n.x = width;
+      if (n.x > width) n.x = 0;
+      if (n.y < 0) n.y = height;
+      if (n.y > height) n.y = 0;
+
+      const pulse = Math.sin(time * 0.002 + n.phase) * 0.3 + 0.7;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = nodeColor + (0.35 * pulse) + ')';
+      ctx.fill();
+    }
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          const alpha = (1 - dist / 130) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = linkColor + alpha + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+})();
+
+window.addEventListener('DOMContentLoaded', () => {
+  checkBackendConnection();
+});
+</script>
+</body>
+</html>
